@@ -31,11 +31,6 @@ source $ZSH/oh-my-zsh.sh
 
 export EDTIOR=nvim
 
-DOTFILES="$HOME/$(dirname $(readlink $(print -P %N)))"
-if [[ -d $DOTFILES/bin ]]; then
-    PATH="$DOTFILES/bin:$PATH"
-fi
-
 # Variables --------------------------------------------------------------------
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=1

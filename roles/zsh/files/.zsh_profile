@@ -4,3 +4,5 @@ fi
 
 # Where should I put you?
 bindkey -s ^ff "tmux-sessionizer\n"
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down

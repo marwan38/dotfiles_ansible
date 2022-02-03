@@ -8,3 +8,18 @@
   ansible.builtin.package:
     name: less
     state: present
+
+- name: Create local bin
+  file:
+    path: "{{ dotfiles_user_home }}/.local/bin"
+    state: directory
+    mode: "0755"
+
+- name: Symlink bin files
+  ansible.builtin.file:
+    src: "{{ dotfiles_home }}/roles/system-packages/files/{{ item }}"
+    dest: "{{ dotfiles_user_home }}/.local/bin/{{ item }}"
+    state: link
+  with_items:
+    - "lua-language-server"
+    - "tat"
