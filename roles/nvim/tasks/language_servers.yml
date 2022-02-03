@@ -38,4 +38,18 @@
     name: '@ansible/ansible-language-server'
     global: true
 
+- name: Install ansible prettier
+  community.general.npm:
+    name: prettier
+    global: true
+
 - import_tasks: sumneko_lua.yml
+
+- name: Stylua
+  ansible.builtin.command: cargo install stylua
+
+- name: Download php-cs-fixer
+  get_url:
+    url: https://cs.symfony.com/download/php-cs-fixer-v3.phar
+    dest: "{{ dotfiles_user_home }}/.local/bin/php-cs-fixer" 
+    mode: a+x
