@@ -1,0 +1,10 @@
+alias ta="tmux attach"
+alias cb='git branch --sort=-committerdate | fzf --header Checkout| xargs git checkout'
+
+# Project based
+# TODO: Move to a 'personal' alias file that's hidden from the public repo
+# AP
+alias rs="./devops/rsync.sh marwan"
+alias gql="npm run graphql:introspect && npm run graphql:generate"
+
+# alias php="docker run php8.0 php"

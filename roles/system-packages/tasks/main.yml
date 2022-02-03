@@ -1,0 +1,5 @@
+- name: Install ripgrep
+  ansible.builtin.command: cargo install ripgrep
+
+- name: Install fd
+  ansible.builtin.command: cargo install fd-find

@@ -1,0 +1,26 @@
+- import_tasks: mac.yml
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- name: Create neovim config directory
+  file:
+    path: "~/.config/nvim"
+    state: directory
+    mode: "0755"
+
+- name: Symlink init.lua to nvim/init.lua
+  ansible.builtin.file:
+    src: "{{ dotfiles_home }}/roles/nvim/files"
+    dest: "{{ dotfiles_user_home }}/.config/nvim"
+    state: link
+    force: yes
+
+- name: Clone packer.nvim (plugin manager)
+  ansible.builtin.git:
+    repo: 'https://github.com/wbthomason/packer.nvim'
+    dest: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+- name: Install plugins
+  command: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+  when: false
+
+- import_tasks: language_servers.yml

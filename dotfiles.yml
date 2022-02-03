@@ -1,0 +1,30 @@
+- name: Set up local workstation
+  hosts: local
+  roles:
+    - role: package-manager
+      tags:
+        - core
+    - role: nodejs
+      tags:
+        - core
+        - nodejs
+    - role: system-packages
+      tags:
+        - core
+        - system-packages
+    - role: alacritty
+      tags:
+        - core
+        - alacritty
+    - role: nvim
+      tags:
+        - nvim
+    - role: tmux
+      tags:
+        - tmux
+    - role: zsh
+      tags:
+        - zsh
+    - role: fzf
+      tags:
+        - fzf
