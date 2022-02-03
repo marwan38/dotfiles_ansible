@@ -3,3 +3,8 @@
 
 - name: Install fd
   ansible.builtin.command: cargo install fd-find
+
+- name: Install less
+  ansible.builtin.package:
+    name: less
+    state: present

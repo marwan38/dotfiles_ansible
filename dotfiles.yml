@@ -28,3 +28,6 @@
     - role: fzf
       tags:
         - fzf
+    - role: git
+      tags:
+        - git
