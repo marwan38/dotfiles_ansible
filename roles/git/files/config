@@ -87,9 +87,6 @@
 	excludesfile = ~/.gitignore
 	pager = delta
 
-[commit]
-	template = "~/.config/git/.gitmessage"
-
 [pull]
 	rebase = true
 
