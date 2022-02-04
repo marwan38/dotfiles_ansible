@@ -53,18 +53,13 @@ setopt HIST_REDUCE_BLANKS
 #     --quit-if-one-screen \
 #     --chop-long-lines"
 
-# export MANPAGER='nvim +Man!'
+export MANPAGER='nvim +Man!'
 
 # Other ----------------------------------------------------------------------
 
 setopt NO_BEEP
 # Stop ctrl-d from closing the shell
 setopt IGNORE_EOF
-
-# Aliases ----------------------------------------------------------------------
-
-# alias ls='ls --color'
-# alias ll='ls -goAh'
 
 ! [ -f ~/.dotfiles/roles/zsh/files/.aliases       ] || source ~/.dotfiles/roles/zsh/files/.aliases
 ! [ -f ~/.dotfiles/roles/zsh/files/.zshrc_profile ] || source ~/.dotfiles/roles/zsh/files/.zshrc_profile
