@@ -2,16 +2,13 @@
 	name = Marwan Mustafa Fikrat
 	email = marwan.mm@live.com
 
-[diff]
-	tool = vimdiff
-
 [difftool]
 	prompt = false
 
 [alias]
 	a    = add
 	f    = fetch
-	ai   = !nvim -c 'Gstatus | wincmd o' .
+	ai   = !nvim -c 'G | wincmd o' .
 	au   = add -u
 	br   = branch --format='%(color: bold green)%(align:2,left)%(HEAD)%(end)%(color:reset)%(align:10,left)%(refname:strip=2)%(end) -> %(color:blue)%(upstream:strip=2) %(color:cyan)%(upstream:track)'
 	bd   = branch -D
@@ -51,7 +48,6 @@
 	untrack = branch --unset-upstream
 	who = shortlog --summary --numbered
 	who2 = shortlog --summary --numbered --since=2year
-	p = publish
 
 	undo = "!f() { \
 			git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; \
@@ -119,5 +115,6 @@
 [delta]
     line-numbers = true
 
-[credential]
-	helper = /mnt/d/webdev/Git/mingw64/libexec/git-core/git-credential-manager-core.exe
+; WSL2 on windows
+; [credential]
+; 	helper = /mnt/d/webdev/Git/mingw64/libexec/git-core/git-credential-manager-core.exe
