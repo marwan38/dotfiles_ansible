@@ -1,2 +1,12 @@
 - import_tasks: mac.yml
   when: ansible_facts['os_family'] == 'Darwin'
+
+- name: PHP Extension imagick
+  community.general.pear:
+    name: pecl/imagick
+    state: present
+
+- name: PHP Extension redis
+  community.general.pear:
+    name: pecl/redis
+    state: present

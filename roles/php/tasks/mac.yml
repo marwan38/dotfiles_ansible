@@ -1,8 +1,8 @@
-# - name: "[Mac] Install PHP"
-#   community.general.homebrew:
-#     name: php@8.0
-#     state: present
-#
+- name: "[Mac] Install PHP"
+  community.general.homebrew:
+    name: php@8.0
+    state: present
+
 - name: Create /etc/profile.d/ if not exist
   ansible.builtin.file:
     path: /etc/profile.d
@@ -15,3 +15,14 @@
     dest: /etc/profile.d/php8.sh
     content: 'PATH=$PATH:/opt/homebrew/opt/php@8.0/bin:/opt/homebrew/opt/php@8.0/sbin'
   become: true
+
+
+- name: "[Mac] Install pkg-config for pear"
+  community.general.homebrew:
+    name: pkg-config 
+    state: present
+
+- name: "ImageMagick for imagick"
+  community.general.homebrew:
+    name: imagemagick
+    state: present
