@@ -294,6 +294,42 @@ endfunction
       "vimwiki/vimwiki",
       branch = "dev",
     }
+
+    use {
+      "nvim-neorg/neorg",
+      after = "nvim-treesitter",
+      config = function()
+        require("neorg").setup {
+          load = {
+            ["core.defaults"] = {},
+            ["core.norg.dirman"] = {
+              config = {
+                workspaces = {
+                  work = "~/notes/work",
+                  home = "~/notes/home",
+                },
+                autochdir = true,
+              },
+            },
+            ["core.gtd.base"] = {
+              config = {
+                workspace = "work",
+              },
+            },
+            ["core.norg.completion"] = {
+              config = {
+                engine = "nvim-cmp",
+              },
+            },
+            ["core.norg.journal"] = {},
+            ["core.norg.concealer"] = {},
+            ["core.norg.qol.toc"] = {},
+            ["core.presenter"] = {},
+          },
+        }
+      end,
+      requires = "nvim-lua/plenary.nvim",
+    }
     use { "lambdalisue/suda.vim" }
 
     -- THEMES

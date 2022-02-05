@@ -92,6 +92,9 @@ require "nvim-config.lsp.json"
 -- YAML
 require("lspconfig").yamlls.setup(LspGetDefaultConfig())
 
+-- Ansible
+require'lspconfig'.ansiblels.setup{}
+
 vim.diagnostic.config {
   virtual_text = false,
   signs = true,

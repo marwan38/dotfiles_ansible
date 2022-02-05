@@ -1,0 +1,17 @@
+# - name: "[Mac] Install PHP"
+#   community.general.homebrew:
+#     name: php@8.0
+#     state: present
+#
+- name: Create /etc/profile.d/ if not exist
+  ansible.builtin.file:
+    path: /etc/profile.d
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Add another bin dir to system-wide $PATH.
+  copy:
+    dest: /etc/profile.d/php8.sh
+    content: 'PATH=$PATH:/opt/homebrew/opt/php@8.0/bin:/opt/homebrew/opt/php@8.0/sbin'
+  become: true

@@ -30,7 +30,7 @@ end
 lua_add_lib "$VIMRUNTIME"
 lua_add_lib(vim.fn.stdpath "data" .. "/site/pack/packer/start/plenary.nvim")
 
-local runtime_path = vim.split(package.path, ';')
+local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 

@@ -48,7 +48,7 @@ return function()
     },
     formatting = {
       -- fields = { "kind", "abbr", "menu" },
-      format = require("lspkind").cmp_format { with_text = true, maxwidth = 300 },
+      format = require("lspkind").cmp_format { mode = "symbol_text", maxwidth = 300 },
     },
     documentation = {
       border = "single",

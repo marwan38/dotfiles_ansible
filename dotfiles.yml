@@ -31,3 +31,6 @@
     - role: git
       tags:
         - git
+    - role: php
+      tags:
+        - php
