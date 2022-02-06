@@ -3,10 +3,17 @@
     name: tmux
     state: present
 
+- name: Create tmux plugins directory
+  file:
+    path: "~/.tmux/plugins"
+    state: directory
+    mode: "0755"
+
 - name: Install tpm
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: "{{dotfiles_user_home}}/.tmux/plugins/tpm"
+  ignore_errors: true
 
 - name: Symlink tmux config
   ansible.builtin.file:

@@ -1,12 +1,29 @@
-- import_tasks: mac.yml
+- import_tasks: Darwin.yml
   when: ansible_facts['os_family'] == 'Darwin'
 
 - name: PHP Extension imagick
   community.general.pear:
     name: pecl/imagick
     state: present
+  ignore_errors: true
 
 - name: PHP Extension redis
   community.general.pear:
     name: pecl/redis
     state: present
+  ignore_errors: true
+
+- name: Create phpcs config dir
+  file:
+    path: "~/.config/phpcs"
+    state: directory
+    mode: "0755"
+  ignore_errors: true
+  
+- name: Symlink php cs fixer config
+  ansible.builtin.file:
+    src: "{{ dotfiles_home }}/roles/php/files/.php-cs-fixer.php"
+    dest: "{{ dotfiles_user_home }}/.config/phpcs/.php-cs-fixer.php"
+    state: link
+    force: yes
+  ignore_errors: true
