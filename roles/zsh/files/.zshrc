@@ -27,14 +27,6 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-# Begin ----------------------------------------------------------------------
-
-export EDTIOR=nvim
-
-# Variables --------------------------------------------------------------------
-
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
-
 # History ----------------------------------------------------------------------
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
@@ -43,23 +35,20 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt SHARE_HISTORY
 setopt HIST_REDUCE_BLANKS
 
-# Pager ------------------------------------------------------------------------
-# export PAGER="less"
-
-# export LESS="\
-#     --RAW-CONTROL-CHARS \
-#     --ignore-case \
-#     --LONG-PROMPT \
-#     --quit-if-one-screen \
-#     --chop-long-lines"
-
-export MANPAGER='nvim +Man!'
 
 # Other ----------------------------------------------------------------------
 
 setopt NO_BEEP
 # Stop ctrl-d from closing the shell
 setopt IGNORE_EOF
+
+
+export EDTIOR=nvim
+export MANPAGER='nvim +Man!'
+
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+
+# Sourcing -------------------------------------------------------------------
 
 ! [ -f ~/.dotfiles/roles/zsh/files/.aliases       ] || source ~/.dotfiles/roles/zsh/files/.aliases
 ! [ -f ~/.dotfiles/roles/zsh/files/.zshrc_profile ] || source ~/.dotfiles/roles/zsh/files/.zshrc_profile
