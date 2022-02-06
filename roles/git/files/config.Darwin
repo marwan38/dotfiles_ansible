@@ -114,7 +114,3 @@
 
 [delta]
     line-numbers = true
-
-; WSL2 on windows
-; [credential]
-; 	helper = /mnt/d/webdev/Git/mingw64/libexec/git-core/git-credential-manager-core.exe
