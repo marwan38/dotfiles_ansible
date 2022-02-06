@@ -1,0 +1,19 @@
+- name: "Repo PHP"
+  ansible.builtin.apt_repository:
+    repo: "ppa:ondrej/php"
+    state: present
+
+- name: "Install PHP"
+  ansible.builtin.apt:
+    name: php8.0
+    state: present
+    update_cache: yes
+  become: true
+
+- name: "Install PHP extensions"
+  ansible.builtin.apt:
+    pkg:
+      - php8.0-imagick
+      - php8.0-redis
+      - php8.0-xdebug
+  become: true

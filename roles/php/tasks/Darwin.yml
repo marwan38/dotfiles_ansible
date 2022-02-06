@@ -7,22 +7,39 @@
   ansible.builtin.file:
     path: /etc/profile.d
     state: directory
-    mode: '0755'
+    mode: "0755"
   become: true
 
 - name: Add another bin dir to system-wide $PATH.
   copy:
     dest: /etc/profile.d/php8.sh
-    content: 'PATH=$PATH:/opt/homebrew/opt/php@8.0/bin:/opt/homebrew/opt/php@8.0/sbin'
+    content: "PATH=$PATH:/opt/homebrew/opt/php@8.0/bin:/opt/homebrew/opt/php@8.0/sbin"
   become: true
-
 
 - name: "[Mac] Install pkg-config for pear"
   community.general.homebrew:
-    name: pkg-config 
+    name: pkg-config
     state: present
 
 - name: "ImageMagick for imagick"
   community.general.homebrew:
     name: imagemagick
     state: present
+
+- name: PHP Extension imagick
+  community.general.pear:
+    name: pecl/imagick
+    state: present
+  ignore_errors: true
+
+- name: PHP Extension redis
+  community.general.pear:
+    name: pecl/redis
+    state: present
+  ignore_errors: true
+
+- name: PHP Extension xdebug
+  community.general.pear:
+    name: pecl/xdebug
+    state: present
+  ignore_errors: true

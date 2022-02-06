@@ -1,24 +1,21 @@
 - import_tasks: Darwin.yml
   when: ansible_facts['os_family'] == 'Darwin'
 
-- name: PHP Extension imagick
-  community.general.pear:
-    name: pecl/imagick
-    state: present
-  ignore_errors: true
+- import_tasks: Debian.yml
+  when: ansible_facts['os_family'] == 'Debian'
 
-- name: PHP Extension redis
-  community.general.pear:
-    name: pecl/redis
-    state: present
-  ignore_errors: true
+- name: Check for phpcs config dir
+  ansible.builtin.stat: 
+    path: "{{ dotfiles_user_home }}/.config/phpcs"
+  register: phpcs_config_stat
 
 - name: Create phpcs config dir
   file:
-    path: "~/.config/phpcs"
+    path: "{{ dotfiles_user_home }}/.config/phpcs"
     state: directory
     mode: "0755"
-  ignore_errors: true
+  when: not phpcs_config_stat.stat.exists
+  
   
 - name: Symlink php cs fixer config
   ansible.builtin.file:
@@ -26,4 +23,4 @@
     dest: "{{ dotfiles_user_home }}/.config/phpcs/.php-cs-fixer.php"
     state: link
     force: yes
-  ignore_errors: true
+  when: not phpcs_config_stat.stat.exists
