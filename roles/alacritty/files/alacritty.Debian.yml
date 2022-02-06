@@ -7,6 +7,9 @@ window:
   title: Alacritty
   dynamic_title: true
 
+shell:
+  program: wsl.exe ~
+
 env:
   TERM: xterm-256color
 
@@ -22,36 +25,24 @@ key_bindings:
   - { Key: L, mods: Control|Alt, chars: "\x1b\x0c" }
   - { Key: D, mods: Control|Alt, chars: "\x1b\x04" }
   - { Key: P, mods: Control|Alt, chars: "\x1b\x10" }
-  # MacOs
-  - { Key: H, mods: Alt, chars: "\x1bh" }
-  - { Key: J, mods: Alt, chars: "\x1bj" }
-  - { Key: K, mods: Alt, chars: "\x1bk" }
-  - { Key: L, mods: Alt, chars: "\x1bl" }
-  - { Key: F, mods: Alt, chars: "\x1bf" }
-  - { Key: D, mods: Alt, chars: "\x1bd" }
-  - { Key: B, mods: Alt, chars: "\x1bb" }
-  - { key: Left, mods: Alt, chars: "\x1bb" } # Skip word left
-  - { key: Right, mods: Alt, chars: "\x1bf" } # Skip word right
-  - { key: Left, mods: Command, chars: "\x1bOH", mode: AppCursor } # Home
-  - { key: Right, mods: Command, chars: "\x1bOF", mode: AppCursor } # End
-  - { key: Back, mods: Command, chars: "\x15" } # Delete line
-  - { key: Back, mods: Alt, chars: "\x1b\x7f" } # Delete word
+  # WSL2/Debian
+  - { Key: Left, mods: Alt, chars: "\x1b[1;3D" }
+  - { Key: Right, mods: Alt, chars: "\x1b[1;3C" }
 
 draw_bold_text_with_bright_colors: true
 
 font:
   normal:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono NF
     style: Regular
   bold:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono NF
     style: Bold
   italic:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono NF
     style: Italic
 
-  size: 14.0
-
+  size: 12.0
 # The definition of color schemes.
 schemes:
   catpuccin: &catpuccin # Default colors
