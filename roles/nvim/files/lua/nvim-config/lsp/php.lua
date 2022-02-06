@@ -1,4 +1,5 @@
 local lspconfig = require "lspconfig"
+local HOME = Config.common.utils.HOME
 
 lspconfig.intelephense.setup {
   on_attach = function(client, bufnr)
@@ -35,7 +36,7 @@ null_ls.register(null_ls.builtins.formatting.phpcsfixer.with {
   args = {
     "--no-interaction",
     "--quiet",
-    "--config=/home/marwan38/.config/phpcs/.php-cs-fixer.php",
+    "--config=" .. HOME .. "/.config/phpcs/.php-cs-fixer.php",
     "fix",
     "$FILENAME",
   },

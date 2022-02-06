@@ -1,11 +1,11 @@
 local uv = vim.loop
 local api = vim.api
 
-
 local M = {}
 
 local is_windows = jit.os == "Windows"
 local path_sep = package.config:sub(1, 1)
+M.HOME = os.getenv("HOME");
 
 ---@alias vector any[]
 

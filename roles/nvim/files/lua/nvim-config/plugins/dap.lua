@@ -1,4 +1,6 @@
 return function()
+  local HOME = Config.common.utils.HOME
+
   vim.fn.sign_define("DapBreakpoint", {
     text = "",
     texthl = "LspDiagnosticsSignError",
@@ -13,7 +15,7 @@ return function()
   dap.adapters.php = {
     type = "executable",
     command = "node",
-    args = { "/home/marwan38/programs/vscode-php-debug/out/phpDebug.js" },
+    args = { HOME .. "/programs/vscode-php-debug/out/phpDebug.js" },
   }
   dap.configurations.php = {
     {
