@@ -16,7 +16,7 @@ lspconfig.intelephense.setup {
   settings = {
     intelephense = {
       environment = {
-        phpVersion = "7.4",
+        phpVersion = "8.0",
       },
     },
   },
@@ -45,6 +45,6 @@ null_ls.register(null_ls.builtins.formatting.phpcsfixer.with {
 null_ls.register(null_ls.builtins.diagnostics.phpstan.with {
   command = "./vendor/bin/phpstan",
   condition = function(utils)
-      return utils.root_has_file "phpstan.neon"
+    return utils.root_has_file "phpstan.neon"
   end,
 })

@@ -86,7 +86,6 @@ return function()
     },
     pickers = {
       find_files = {
-
         results_title = false,
       },
       git_files = {

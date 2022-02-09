@@ -98,6 +98,9 @@ vim.diagnostic.config {
   underline = true,
   update_in_insert = false,
   severity_sort = false,
+  float = {
+    sources = "always",
+  },
 }
 
 local pop_opts = { border = "single", max_width = 80 }
