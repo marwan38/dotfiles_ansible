@@ -51,6 +51,27 @@ _G.LspCommonOnAttach = function(client, bufnr)
       border = "single",
     },
   }, bufnr)
+
+  -- TODO: Change to vim.api.nvim_buf_set_keymap
+  vim.cmd [[
+    " LSP
+    nnoremap <buffer> <silent> gd <Cmd>lua vim.lsp.buf.definition()<CR>
+    nnoremap <buffer> <silent> gD <C-W>v<Cmd>lua vim.lsp.buf.declaration()<CR>
+    nnoremap <buffer> <silent> gy <Cmd>lua vim.lsp.buf.type_definition()<CR>
+    nnoremap <buffer> <silent> gi <Cmd>lua vim.lsp.buf.implementation()<CR>
+    nnoremap <buffer> <silent> <C-k> <Cmd>lua vim.lsp.buf.signature_help()<CR>
+    nnoremap <buffer> <silent> gr <Cmd>Telescope lsp_references<CR>
+    nnoremap <buffer> <silent> <leader>rn <Cmd>lua vim.lsp.buf.rename()<CR>
+    nnoremap <buffer> <silent> <F2> <Cmd>lua vim.lsp.buf.rename()<CR>
+    nnoremap <buffer> <silent> <leader>f <Cmd>lua vim.lsp.buf.formatting()<CR>
+    nnoremap <buffer> <silent> K <Cmd>lua vim.lsp.buf.hover()<CR>
+    nnoremap <buffer> <leader>. <Cmd>Telescope lsp_code_actions theme=get_cursor<CR>
+    vnoremap <buffer> <leader>. <Cmd>Telescope lsp_range_code_actions theme=get_cursor<CR>
+    nnoremap <buffer> <silent> <leader>ld <Cmd>lua vim.diagnostic.open_float()<CR>
+    " nnoremap <M-O> <Cmd>lua vim.lsp.buf.organize_imports()<CR>
+    nnoremap <buffer> <silent> [d <Cmd>lua vim.diagnostic.goto_prev()<CR>
+    nnoremap <buffer> <silent> ]d <Cmd>lua vim.diagnostic.goto_next()<CR>
+  ]]
 end
 
 _G.LspGetDefaultConfig = function()
@@ -103,9 +124,19 @@ vim.diagnostic.config {
   },
 }
 
-local pop_opts = { border = "single", max_width = 80 }
+local border = 'single'
+
+local pop_opts = { border = border, max_width = 80 }
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, pop_opts)
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, pop_opts)
+
+-- Override global lsp floating preview border
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 function M.define_diagnostic_signs(opts)
   local group = {

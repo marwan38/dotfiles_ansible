@@ -228,24 +228,6 @@ nnoremap <expr> ]r v:lua.Config.lib.expr.next_reference()
 " inoremap <silent><expr> <C-Space> compe#complete()
 " inoremap <silent><expr> <Cr> compe#confirm("<Cr>")
 
-" LSP
-nnoremap <silent> gd <Cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gD <C-W>v<Cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gy <Cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gi <Cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <C-k> <Cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> gr <Cmd>Telescope lsp_references<CR>
-nnoremap <silent> <leader>rn <Cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <F2> <Cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <leader>f <Cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> K <Cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>. <Cmd>Telescope lsp_code_actions theme=get_cursor<CR>
-vnoremap <leader>. <Cmd>Telescope lsp_range_code_actions theme=get_cursor<CR>
-nnoremap <silent> <leader>ld <Cmd>lua vim.diagnostic.open_float()<CR>
-" nnoremap <M-O> <Cmd>lua vim.lsp.buf.organize_imports()<CR>
-nnoremap <silent> [d <Cmd>lua vim.diagnostic.goto_prev()<CR>
-nnoremap <silent> ]d <Cmd>lua vim.diagnostic.goto_next()<CR>
-
 xnoremap @ :<C-u>lua require'nvim-config.lib'.execute_macro_over_visual_range()<CR>
 
 inoremap <silent> <Tab> <Cmd>lua require'nvim-config.lib'.full_indent()<CR>
