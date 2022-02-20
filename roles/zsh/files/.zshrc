@@ -11,7 +11,7 @@ if ! [ -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
 fi
 
-zstyle :omz:plugins:ssh-agent identities id_rsa_marwan
+zstyle :omz:plugins:ssh-agent identities id_rsa_marwan bitbucket
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"

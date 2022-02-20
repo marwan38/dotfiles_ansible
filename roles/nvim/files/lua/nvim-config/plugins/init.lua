@@ -230,12 +230,13 @@ return require("packer").startup {
       "vim-test/vim-test",
       setup = function()
         vim.cmd [[
-            let test#strategy = "vimux"
+            let test#strategy = "floaterm"
             let test#php#phpunit#executable = './vendor/bin/phpunit'
         ]]
       end,
       requires = {
         "preservim/vimux",
+        "voldikss/vim-floaterm",
       },
     }
 

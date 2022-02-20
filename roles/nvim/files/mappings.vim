@@ -205,10 +205,14 @@ nnoremap <C-M-o> <Cmd>lua ToggleSymbolsOutline()<CR>
 nnoremap <M-CR> <Cmd>lua UpdateMessagesWin()<CR>
 
 " Open a terminal split
-nnoremap <silent> <C-l> <Cmd>lua ToggleTermSplit()<CR>
-tnoremap <silent> <C-l> <Cmd>lua ToggleTermSplit()<CR>
+" nnoremap <silent> <C-l> <Cmd>lua ToggleTermSplit()<CR>
+" tnoremap <silent> <C-l> <Cmd>lua ToggleTermSplit()<CR>
+nnoremap   <silent>   <C-l>   :FloatermToggle<CR>
+tnoremap   <silent>   <C-l>   <C-\><C-n>:FloatermToggle<CR>
 tnoremap <silent> <Esc> <C-\><C-n>
 tnoremap <silent> <C-q> <Esc>
+autocmd User FloatermOpen tnoremap <silent> <S> :FloatermNext 
+autocmd User FloatermOpen tnoremap <silent> <S-Tab> :FloatermPrev
 
 " Quickfix and Location list
 nnoremap <M-q> <Cmd>lua ToggleQF()<CR>
