@@ -1,4 +1,5 @@
 return function()
+  local dap = require "dap"
   local HOME = Config.common.utils.HOME
 
   vim.fn.sign_define("DapBreakpoint", {
@@ -7,8 +8,19 @@ return function()
     linehl = "",
     numhl = "",
   })
+  vim.fn.sign_define("DapBreakpointRejected", {
+    text = "",
+    texthl = "LspDiagnosticsSignHint",
+    linehl = "",
+    numhl = "",
+  })
+  vim.fn.sign_define("DapStopped", {
+    text = "",
+    texthl = "LspDiagnosticsSignInformation",
+    linehl = "DiagnosticUnderlineInfo",
+    numhl = "LspDiagnosticsSignInformation",
+  })
 
-  local dap = require "dap"
   -- dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 
   -- PHP

@@ -39,6 +39,7 @@ return function()
       selection_strategy = "reset",
       sorting_strategy = "ascending",
       layout_strategy = "horizontal",
+      path_display = { shorten = 5 },
       layout_config = {
         prompt_position = "top",
         preview_cutoff = 120,
@@ -52,9 +53,7 @@ return function()
           mirror = false,
         },
       },
-      path_display = {
-        "absolute",
-      },
+
       file_sorter = require("telescope.sorters").get_fuzzy_file,
       file_ignore_patterns = {},
 
@@ -71,7 +70,7 @@ return function()
       -- qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
       -- Developer configurations: Not meant for general override
-      -- buffer_previewer_maker = new_maker,
+      buffer_previewer_maker = new_maker,
       mappings = {
         i = {
           ["<c-q>"] = actions.send_to_qflist + actions.open_qflist,
@@ -114,7 +113,7 @@ return function()
     extensions = {
       fzf = {
         fuzzy = true, -- false will only do exact matching
-        override_generic_sorter = false, -- override the generic sorter
+        override_generic_sorter = true, -- override the generic sorter
         override_file_sorter = true, -- override the file sorter
         case_mode = "smart_case", -- or "ignore_case" or "respect_case"
         -- the default case_mode is "smart_case"

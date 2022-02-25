@@ -54,9 +54,8 @@ return function()
       border = "single",
     },
     sources = {
-      { name = "nvim_lsp" },
       { name = "vsnip" },
-      { name = "spell" },
+      { name = "nvim_lsp" },
       { name = "path" },
       {
         name = "buffer",
@@ -76,14 +75,7 @@ return function()
           end,
         },
       },
-    },
-    sorting = {
-      comparators = {
-        function(...)
-          return cmp_buffer:compare_locality(...)
-        end,
-      },
-    },
+    }
   }
 
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
