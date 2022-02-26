@@ -21,7 +21,7 @@ augroup NvimConfig
                 \ lua vim.highlight.on_yank({ higroup="Visual", timeout=300, on_visual=true })
 
     " Use q to close utils buffers
-    au FileType qf,help,man,log nnoremap <silent> <buffer> q :close<CR>
+    au FileType qf,help,man,log,lspinfo nnoremap <silent> <buffer> q :close<CR>
 
     au BufWinEnter quickfix set nobuflisted | setl nowrap cc=
 
