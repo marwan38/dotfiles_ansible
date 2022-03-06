@@ -50,6 +50,8 @@ null_ls.register(null_ls.builtins.formatting.stylelint.with {
   filetypes = { "typescript", "typescriptreact" },
   command = "./node_modules/.bin/stylelint",
   condition = function(utils)
-    return utils.root_has_file ".stylelintrc"
+    -- Temp disable
+    return false
+    -- return utils.root_has_file ".stylelintrc"
   end,
 })
