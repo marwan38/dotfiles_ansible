@@ -54,8 +54,8 @@ return function()
       border = "single",
     },
     sources = {
-      { name = "vsnip" },
       { name = "nvim_lsp" },
+      { name = "vsnip" },
       { name = "path" },
       {
         name = "buffer",
@@ -75,7 +75,7 @@ return function()
           end,
         },
       },
-    }
+    },
   }
 
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
