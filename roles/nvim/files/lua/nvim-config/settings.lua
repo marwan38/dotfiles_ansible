@@ -7,6 +7,7 @@ local function list(value, str, sep)
   return str ~= "" and table.concat({ value, str }, sep) or value
 end
 
+vim.g.mapleader = " "
 opt.number = true
 opt.relativenumber = true
 opt.smartindent = true
@@ -70,6 +71,7 @@ opt.writebackup = true
 opt.undofile = true
 opt.isfname:append ":"
 
+
 local data_backup = vim.fn.stdpath "data" .. "/backup"
 local data_undo = vim.fn.stdpath "data" .. "/undo"
 
@@ -96,8 +98,6 @@ local init_extra_path = vim.fn.fnamemodify(vim.fn.expand "$MYVIMRC", ":h") .. "/
 if vim.fn.filereadable(init_extra_path) == 1 then
   vim.cmd("source " .. vim.fn.fnameescape(init_extra_path))
 end
-
-vim.g.mapleader = " "
 
 if vim.fn.has "wsl" == 1 then
   vim.g.clipboard = {

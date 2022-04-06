@@ -33,7 +33,7 @@ return function()
       "json5",
       "lua",
       "php",
-      -- "phpdoc",
+      "phpdoc",
       "regex",
       "rust",
       "scss",

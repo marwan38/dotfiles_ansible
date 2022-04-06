@@ -13,6 +13,9 @@ lspconfig.intelephense.setup {
   flags = {
     debounce_text_changes = 300,
   },
+  -- init_options = {
+  --   clearCache = true,
+  -- },
   settings = {
     intelephense = {
       environment = {

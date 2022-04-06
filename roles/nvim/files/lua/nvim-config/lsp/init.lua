@@ -45,12 +45,6 @@ _G.LspCommonOnAttach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   require("illuminate").on_attach(client)
-  require("lsp_signature").on_attach({
-    bind = true, -- This is mandatory, otherwise border config won't get registered.
-    handler_opts = {
-      border = "single",
-    },
-  }, bufnr)
 
   -- TODO: Change to vim.api.nvim_buf_set_keymap
   vim.cmd [[
@@ -124,7 +118,7 @@ vim.diagnostic.config {
   },
 }
 
-local border = 'single'
+local border = "single"
 
 local pop_opts = { border = border, max_width = 80 }
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, pop_opts)

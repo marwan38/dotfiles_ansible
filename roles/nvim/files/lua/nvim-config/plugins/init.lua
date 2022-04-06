@@ -60,6 +60,7 @@ return require("packer").startup {
     use {
       "nvim-treesitter/nvim-treesitter",
       config = conf "treesitter",
+      before = "neorg",
       requires = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "JoosepAlviste/nvim-ts-context-commentstring",
@@ -299,11 +300,16 @@ endfunction
 
     use {
       "nvim-neorg/neorg",
-      after = "nvim-treesitter",
       config = function()
         require("neorg").setup {
           load = {
             ["core.defaults"] = {},
+            ["core.keybinds"] = {
+              config = { -- Note that this table is optional and doesn't need to be provided
+                default_keybinds = true,
+                neorg_leader = "<Leader>"
+              },
+            },
             ["core.norg.dirman"] = {
               config = {
                 workspaces = {
@@ -326,7 +332,6 @@ endfunction
             ["core.norg.journal"] = {},
             ["core.norg.concealer"] = {},
             ["core.norg.qol.toc"] = {},
-            ["core.presenter"] = {},
           },
         }
       end,
