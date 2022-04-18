@@ -107,6 +107,9 @@ require "nvim-config.lsp.json"
 -- YAML
 require("lspconfig").yamlls.setup(LspGetDefaultConfig())
 
+-- GraphQL
+require("lspconfig").graphql.setup(LspGetDefaultConfig())
+
 vim.diagnostic.config {
   virtual_text = false,
   signs = true,

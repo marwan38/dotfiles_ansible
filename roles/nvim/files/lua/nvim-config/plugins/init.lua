@@ -175,7 +175,13 @@ return require("packer").startup {
     use { "nvim-telescope/telescope.nvim", config = conf "telescope", after = "nvim-web-devicons" }
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     use { "nvim-telescope/telescope-media-files.nvim" }
-    use { "akinsho/nvim-bufferline.lua", config = conf "nvim-bufferline", after = "nvim-web-devicons" }
+    use {
+      "akinsho/nvim-bufferline.lua",
+      config = conf "nvim-bufferline",
+      after = "nvim-web-devicons",
+      branch = "main",
+      tag = "*",
+    }
     use {
       "karb94/neoscroll.nvim",
       config = conf "neoscroll",
@@ -282,22 +288,25 @@ return require("packer").startup {
       "iamcco/markdown-preview.nvim",
       run = "cd app && yarn install",
       setup = function()
-        vim.api.nvim_exec(
-          [[
-function! MkdpOpenInNewWindow(url)
-lua require'nvim-config.lib'.mkdp_open_in_new_window(vim.fn.eval("a:url"))
-endfunction
-]],
-          false
-        )
-        vim.g.mkdp_browserfunc = "MkdpOpenInNewWindow"
+--         vim.api.nvim_exec(
+--           [[
+-- function! MkdpOpenInNewWindow(url)
+-- lua require'nvim-config.lib'.mkdp_open_in_new_window(vim.fn.eval("a:url"))
+-- endfunction
+-- ]],
+--           false
+--         )
+--         vim.g.mkdp_browserfunc = "MkdpOpenInNewWindow"
       end,
     }
-    use {
-      "vimwiki/vimwiki",
-      branch = "dev",
-    }
-
+    use({
+       "vuki656/package-info.nvim",
+        requires = "MunifTanjim/nui.nvim",
+        config = function ()
+          require('package-info').setup()
+        end,
+        disable = true
+    })
     use {
       "nvim-neorg/neorg",
       config = function()
@@ -307,7 +316,7 @@ endfunction
             ["core.keybinds"] = {
               config = { -- Note that this table is optional and doesn't need to be provided
                 default_keybinds = true,
-                neorg_leader = "<Leader>"
+                neorg_leader = "<Leader>",
               },
             },
             ["core.norg.dirman"] = {

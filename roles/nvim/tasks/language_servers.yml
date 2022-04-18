@@ -48,6 +48,11 @@
     name: prettier
     global: true
 
+- name: Install graphql lsp
+  community.general.npm:
+    name: graphql-language-service-cli
+    global: true
+
 - import_tasks: sumneko_lua.yml
 
 - name: Stylua
