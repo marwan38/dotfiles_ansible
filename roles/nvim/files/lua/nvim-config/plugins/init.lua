@@ -103,6 +103,7 @@ return require("packer").startup {
         { "hrsh7th/cmp-path" },
         { "hrsh7th/cmp-buffer" },
         { "hrsh7th/cmp-cmdline" },
+        { "hrsh7th/cmp-nvim-lua" },
       },
       after = { "nvim-autopairs", "friendly-snippets" },
       config = conf "nvim-cmp",
@@ -288,25 +289,25 @@ return require("packer").startup {
       "iamcco/markdown-preview.nvim",
       run = "cd app && yarn install",
       setup = function()
---         vim.api.nvim_exec(
---           [[
--- function! MkdpOpenInNewWindow(url)
--- lua require'nvim-config.lib'.mkdp_open_in_new_window(vim.fn.eval("a:url"))
--- endfunction
--- ]],
---           false
---         )
---         vim.g.mkdp_browserfunc = "MkdpOpenInNewWindow"
+        --         vim.api.nvim_exec(
+        --           [[
+        -- function! MkdpOpenInNewWindow(url)
+        -- lua require'nvim-config.lib'.mkdp_open_in_new_window(vim.fn.eval("a:url"))
+        -- endfunction
+        -- ]],
+        --           false
+        --         )
+        --         vim.g.mkdp_browserfunc = "MkdpOpenInNewWindow"
       end,
     }
-    use({
-       "vuki656/package-info.nvim",
-        requires = "MunifTanjim/nui.nvim",
-        config = function ()
-          require('package-info').setup()
-        end,
-        disable = true
-    })
+    use {
+      "vuki656/package-info.nvim",
+      requires = "MunifTanjim/nui.nvim",
+      config = function()
+        require("package-info").setup()
+      end,
+      disable = true,
+    }
     use {
       "nvim-neorg/neorg",
       config = function()

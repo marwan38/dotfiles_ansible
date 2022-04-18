@@ -84,6 +84,9 @@ return function()
       map("o", "ih", ":<C-U>Gitsigns select_hunk<CR>")
       map("x", "ih", ":<C-U>Gitsigns select_hunk<CR>")
     end,
+    watch_gitdir = {
+      interval = 1000,
+    },
     diff_opts = {
       algorithm = "histogram",
       internal = true,

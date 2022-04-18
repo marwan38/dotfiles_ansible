@@ -52,11 +52,16 @@ return function()
     },
     window = {
       documentation = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        -- completion = cmp.config.window.bordered(),
+        documentation = {
+          border = "single",
+          winhighlight = "Normal:Normal,CursorLine:Visual,Search:None",
+          zindex = 1001,
+        },
       },
     },
     sources = {
+      { name = "nvim_lua" },
       { name = "nvim_lsp" },
       { name = "vsnip" },
       { name = "path" },

@@ -38,9 +38,11 @@ augroup NvimConfig
             \ exec "so " . stdpath("config") . "/lua/nvim-config/plugins/init.lua"
             \ | PackerCompile
 
+    au User PackerCompileDone lua Config.common.utils.info("Packer compiled!")
+
     " Handle opening buffers with the format`foo/bar/baz:128:17`
     au BufEnter *
-                \ if expand("<afile>") =~ "\v.*:(\d+)?(:\d+:?)?$"
+                \ if expand("<afile>") =~ '\v.*:(\d+)?(:\d+:?)?$'
                 \ |     exe "lua require'nvim-config.au'"
                 \           . ".open_file_location(vim.fn.expand('<afile>'))"
                 \ | endif
