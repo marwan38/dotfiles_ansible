@@ -145,6 +145,7 @@ return require("packer").startup {
     use { "norcalli/nvim-colorizer.lua", config = conf "nvim-colorizer", event = "BufRead" }
     use {
       "numToStr/Comment.nvim",
+      tag = 'v0.6',
       config = function()
         require("Comment").setup {
           ---@param ctx Ctx

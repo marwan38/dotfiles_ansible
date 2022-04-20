@@ -35,7 +35,7 @@ augroup NvimConfig
 
     " Run PackerCompile when changes are made to plugin configs.
     au BufWritePost */lua/nvim-config/plugins/*.lua
-            \ exec "so " . stdpath("config") . "/lua/nvim-config/plugins/init.lua"
+            \ exe "so " . stdpath("config") . "/lua/nvim-config/plugins/init.lua"
             \ | PackerCompile
 
     au User PackerCompileDone lua Config.common.utils.info("Packer compiled!")
