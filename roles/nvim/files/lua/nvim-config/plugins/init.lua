@@ -145,7 +145,6 @@ return require("packer").startup {
     use { "norcalli/nvim-colorizer.lua", config = conf "nvim-colorizer", event = "BufRead" }
     use {
       "numToStr/Comment.nvim",
-      tag = "v0.6",
       config = function()
         require("Comment").setup {
           ---@param ctx Ctx
@@ -205,18 +204,18 @@ return require("packer").startup {
         -- you can configure Hop the way you like here; see :h hop-config
         require("hop").setup {}
 
-        vim.api.nvim_set_keymap(
-          "n",
-          "f",
-          "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
-          {}
-        )
-        vim.api.nvim_set_keymap(
-          "n",
-          "F",
-          "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
-          {}
-        )
+        -- vim.api.nvim_set_keymap(
+        --   "n",
+        --   "f",
+        --   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
+        --   {}
+        -- )
+        -- vim.api.nvim_set_keymap(
+        --   "n",
+        --   "F",
+        --   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
+        --   {}
+        -- )
       end,
     }
 

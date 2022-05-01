@@ -53,7 +53,7 @@ return function()
       enable = true, -- false will disable the whole extension
       additional_vim_regex_highlighting = false,
       disable = function(lang, bufnr) -- Disable in large buffers
-        return lang == "vim" or vim.api.nvim_buf_line_count(bufnr) > 1000
+        return lang == "vim" or vim.api.nvim_buf_line_count(bufnr) > 10000
       end,
     },
     incremental_selection = {

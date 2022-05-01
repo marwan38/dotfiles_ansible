@@ -59,8 +59,8 @@ _G.LspCommonOnAttach = function(client, bufnr)
     nnoremap <buffer> <silent> <F2> <Cmd>lua vim.lsp.buf.rename()<CR>
     nnoremap <buffer> <silent> <leader>f <Cmd>lua vim.lsp.buf.formatting()<CR>
     nnoremap <buffer> <silent> K <Cmd>lua vim.lsp.buf.hover()<CR>
-    nnoremap <buffer> <leader>. <Cmd>Telescope lsp_code_actions theme=get_cursor<CR>
-    vnoremap <buffer> <leader>. <Cmd>Telescope lsp_range_code_actions theme=get_cursor<CR>
+    nnoremap <buffer> <leader>. <Cmd>lua vim.lsp.buf.code_action()<CR>
+    vnoremap <buffer> <leader>. <Cmd>lua vim.lsp.buf.range_code_action()<CR>
     nnoremap <buffer> <silent> <leader>ld <Cmd>lua vim.diagnostic.open_float()<CR>
     " nnoremap <M-O> <Cmd>lua vim.lsp.buf.organize_imports()<CR>
     nnoremap <buffer> <silent> [d <Cmd>lua vim.diagnostic.goto_prev()<CR>

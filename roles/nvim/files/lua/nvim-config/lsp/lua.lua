@@ -45,7 +45,7 @@ local config = vim.tbl_deep_extend("force", LspGetDefaultConfig(), {
         unicodeName = true,
       },
       diagnostics = {
-        globals = { "vim", "jit", "bit", "Config", "packer_bootstrap" },
+        globals = { "vim", "jit", "bit", "Config", "packer_bootstrap", "" },
       },
       workspace = {
         library = lua_lib,

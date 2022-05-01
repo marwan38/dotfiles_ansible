@@ -6,7 +6,6 @@ local expr = M.expr
 
 local scratch_counter = 1
 
-
 ---@class BufToggleEntry
 ---@field last_winid integer
 ---@field height integer|nil
@@ -19,7 +18,7 @@ BufToggleEntry.__index = BufToggleEntry
 function BufToggleEntry.new(opts)
   opts = opts or {}
   local self = {
-    height = opts.height
+    height = opts.height,
   }
   setmetatable(self, BufToggleEntry)
   return self
@@ -43,7 +42,7 @@ end
 ---@return function
 function M.create_buf_toggler(buf_finder, cb_open, cb_close, opts)
   opts = opts or {}
-  local toggler_entry = BufToggleEntry.new({ height = opts.height })
+  local toggler_entry = BufToggleEntry.new { height = opts.height }
 
   local function open()
     toggler_entry.last_winid = api.nvim_get_current_win()
@@ -51,7 +50,6 @@ function M.create_buf_toggler(buf_finder, cb_open, cb_close, opts)
     if ok then
       if toggler_entry.height then
         vim.cmd("res " .. toggler_entry.height)
-
       end
     else
       utils.err("[BufToggler] Open callback failed: " .. err)
@@ -71,13 +69,11 @@ function M.create_buf_toggler(buf_finder, cb_open, cb_close, opts)
     if api.nvim_win_is_valid(toggler_entry.last_winid or -1) then
       api.nvim_set_current_win(toggler_entry.last_winid)
     else
-
-      vim.cmd("wincmd p")
-
+      vim.cmd "wincmd p"
     end
   end
 
-  return function ()
+  return function()
     local target_bufid = buf_finder()
 
     if not target_bufid then
@@ -108,27 +104,24 @@ function M.create_buf_toggler(buf_finder, cb_open, cb_close, opts)
 end
 
 function M.execute_macro_over_visual_range()
-
   print("@" .. vim.fn.getcmdline())
   vim.fn.execute(":'<,'>normal @" .. vim.fn.nr2char(vim.fn.getchar()))
 end
 
-
 function M.read_new(exprression)
-  vim.cmd("enew | set ft=log")
+  vim.cmd "enew | set ft=log"
 
   vim.fn.execute("r! " .. exprression)
 end
 
 ---@return string[]
 function M.get_visual_selection()
-  local pos = vim.fn.getpos("'<")
+  local pos = vim.fn.getpos "'<"
 
   local line_start = pos[2]
   local column_start = pos[3]
 
-
-  pos = vim.fn.getpos("'>")
+  pos = vim.fn.getpos "'>"
   local line_end = pos[2]
   local column_end = pos[3]
 
@@ -144,27 +137,26 @@ function M.get_visual_selection()
   return lines
 end
 
-
 function M.diff_saved()
   local filetype = api.nvim_buf_get_option(0, "filetype")
-  vim.cmd("tab split | diffthis")
-  vim.cmd("aboveleft vnew | r # | normal! 1Gdd")
-  vim.cmd("diffthis")
+  vim.cmd "tab split | diffthis"
+  vim.cmd "aboveleft vnew | r # | normal! 1Gdd"
+  vim.cmd "diffthis"
   vim.cmd("setlocal bt=nofile bh=wipe nobl noswf ro ft=" .. filetype)
-  vim.cmd("wincmd l")
+  vim.cmd "wincmd l"
 end
 
 function M.workspace_files(opt)
   opt = opt or {}
   if opt.all then
-    require'telescope.builtin'.find_files({
+    require("telescope.builtin").find_files {
       hidden = true,
-      find_command = { "fd", "--type", "f", "-uu" }
-    })
-  elseif #vim.fn.glob("./.git") > 0 then
-    vim.cmd("Telescope git_files")
+      find_command = { "fd", "--type", "f", "-uu" },
+    }
+  elseif #vim.fn.glob "./.git" > 0 then
+    vim.cmd "Telescope git_files"
   else
-    require'telescope.builtin'.find_files({ hidden = true })
+    require("telescope.builtin").find_files { hidden = true }
   end
 end
 
@@ -179,22 +171,21 @@ function M.remove_buffer(force, bufid)
     local modified = vim.bo[bufid].modified
 
     if modified then
-      utils.err("No write since last change!")
+      utils.err "No write since last change!"
       return
     end
   end
 
-  local alt_bufid = vim.fn.bufnr("#")
+  local alt_bufid = vim.fn.bufnr "#"
 
   if alt_bufid ~= -1 then
     api.nvim_set_current_buf(alt_bufid)
   else
     local listed = utils.list_listed_bufs()
     if #listed > (vim.bo[0].buflisted and 1 or 0) then
-      vim.cmd("silent! bp")
+      vim.cmd "silent! bp"
     else
-      vim.cmd("enew")
-
+      vim.cmd "enew"
     end
   end
 
@@ -209,29 +200,16 @@ end
 ---@param noformat? boolean Don't format the split lines.
 function M.split_on_pattern(pattern, range, noformat)
   if pattern == "" then
-    pattern = vim.fn.getreg("/")
+    pattern = vim.fn.getreg "/"
   end
   local epattern = pattern:gsub("/", "\\/")
   local last_line = api.nvim_win_get_cursor(0)[1]
 
-
-  local test = string.format(
-    [[%ss/%s/\0\r/g]],
-    range[1] == 0 and "" or ("%d,%d"):format(range[2], range[3]),
-    epattern,
-    epattern
-
-  );
-  pi(test)
-  local ok, err = pcall(vim.cmd, string.format(
-    [[%ss/%s/\0\r/g]],
-    range[1] == 0 and "" or ("%d,%d"):format(range[2], range[3]),
-    epattern,
-    epattern
-
-  ))
-  vim.cmd("noh")
-
+  local ok, err = pcall(
+    vim.cmd,
+    string.format([[%ss/%s/\0\r/g]], range[1] == 0 and "" or ("%d,%d"):format(range[2], range[3]), epattern, epattern)
+  )
+  vim.cmd "noh"
 
   if not ok then
     utils.err(err)
@@ -250,10 +228,11 @@ function M.split_on_pattern(pattern, range, noformat)
   end
 end
 
-
 function M.get_indent_level()
   local lnum = api.nvim_win_get_cursor(0)[1]
-  if lnum == 0 then return 0 end
+  if lnum == 0 then
+    return 0
+  end
 
   local indent = vim.fn.cindent(lnum)
   return indent
@@ -264,7 +243,7 @@ function M.full_indent()
   local col = pos[2]
   local cline = api.nvim_get_current_line()
   local last_col = #cline
-  local first_nonspace = cline:match("^%s*()%S")
+  local first_nonspace = cline:match "^%s*()%S"
 
   local tab_char = "	"
   if first_nonspace or col < last_col then
@@ -278,7 +257,6 @@ function M.full_indent()
   local ts = vim.bo.ts
 
   if et then
-
     if indent == 0 then
       indent = sw > 0 and sw or 4
     end
@@ -287,14 +265,11 @@ function M.full_indent()
       return
     end
 
-
-    vim.cmd("normal! d0x")
+    vim.cmd "normal! d0x"
     api.nvim_feedkeys(string.rep(" ", indent), "n", false)
-
   else
     if indent == 0 then
       indent = ts > 0 and ts or 4
-
     end
     if indent <= col then
       api.nvim_feedkeys(tab_char, "n", false)
@@ -302,26 +277,21 @@ function M.full_indent()
     end
     local ntabs = math.floor(indent / ts)
     local nspaces = indent - ntabs * ts
-    vim.cmd("normal! d0x")
-    api.nvim_feedkeys(
-      string.rep(tab_char, ntabs) .. string.rep(" ", nspaces),
-      "n", false
-    )
+    vim.cmd "normal! d0x"
+    api.nvim_feedkeys(string.rep(tab_char, ntabs) .. string.rep(" ", nspaces), "n", false)
   end
 end
 
-
 function M.name_syn_stack()
-  local stack = vim.fn.synstack(vim.fn.line("."), vim.fn.col("."))
-  stack = vim.tbl_map(function (v)
+  local stack = vim.fn.synstack(vim.fn.line ".", vim.fn.col ".")
+  stack = vim.tbl_map(function(v)
     return vim.fn.synIDattr(v, "name")
   end, stack)
   return stack
 end
 
-
 function M.print_syn_group()
-  local id = vim.fn.synID(vim.fn.line("."), vim.fn.col("."), 1)
+  local id = vim.fn.synID(vim.fn.line ".", vim.fn.col ".", 1)
   print("synstack:", vim.inspect(M.name_syn_stack()))
   print(vim.fn.synIDattr(id, "name") .. " -> " .. vim.fn.synIDattr(vim.fn.synIDtrans(id), "name"))
 end
@@ -331,7 +301,6 @@ function M.mkdp_open_in_new_window(url)
 end
 
 function M.new_scratch_buf()
-
   local bufid = api.nvim_create_buf(true, true)
   local name = "Scratch " .. scratch_counter
   scratch_counter = scratch_counter + 1
@@ -344,7 +313,7 @@ end
 ---Close the current window and bring focus to the last used window.
 function M.comfy_quit()
   local cur_win = api.nvim_get_current_win()
-  local prev_win = vim.fn.win_getid(vim.fn.winnr("#"))
+  local prev_win = vim.fn.win_getid(vim.fn.winnr "#")
   local ok, err = pcall(vim.cmd, "silent q")
 
   if not ok then
@@ -355,7 +324,7 @@ function M.comfy_quit()
 end
 
 function M.comfy_grep(...)
-  local args = {...}
+  local args = { ... }
   local cargs = vim.tbl_map(function(arg)
     return vim.fn.shellescape(arg):gsub("[|]", { ["'"] = "''", ["|"] = "\\|" })
   end, args)
@@ -369,7 +338,7 @@ function M.comfy_grep(...)
   vim.fn.setreg("/", M.regex_to_pattern(args[1]))
 
   vim.opt.hlsearch = true
-  vim.cmd("belowright cope")
+  vim.cmd "belowright cope"
 end
 
 ---Convert a PCRE regex to a vim pattern. WARN: Conversion is incomplete.
@@ -378,25 +347,24 @@ end
 function M.regex_to_pattern(exp)
   local subs = {
 
-    { "@", "\\@" },                                 -- Escape at sign
-    { "~", "\\~" },                                 -- Escape tilde
+    { "@", "\\@" }, -- Escape at sign
+    { "~", "\\~" }, -- Escape tilde
 
-    { "([^\\]?)%((%?<%=)([^)]-)%)", "%1(%3)@<=" },  -- Positive lookbehind
-    { "([^\\]?)%((%?<%!)([^)]-)%)", "%1(%3)@<!" },  -- Negative lookbehind
-    { "([^\\]?)%((%?%=)([^)]-)%)", "%1(%3)@=" },    -- Positive lookahead
-    { "([^\\]?)%((%?%!)([^)]-)%)", "%1(%3)@!" },    -- Negative lookahead
-    { "([^\\]?)%(%?:", "%1%%(" },                   -- Non-capturing group
-    { "%*%?", "{-}" },                              -- Lazy quantifier
-    { "([^?]?)<", "%1\\<" },                        -- Escape chevrons
+    { "([^\\]?)%((%?<%=)([^)]-)%)", "%1(%3)@<=" }, -- Positive lookbehind
+    { "([^\\]?)%((%?<%!)([^)]-)%)", "%1(%3)@<!" }, -- Negative lookbehind
+    { "([^\\]?)%((%?%=)([^)]-)%)", "%1(%3)@=" }, -- Positive lookahead
+    { "([^\\]?)%((%?%!)([^)]-)%)", "%1(%3)@!" }, -- Negative lookahead
+    { "([^\\]?)%(%?:", "%1%%(" }, -- Non-capturing group
+    { "%*%?", "{-}" }, -- Lazy quantifier
+    { "([^?]?)<", "%1\\<" }, -- Escape chevrons
     { "([^?]?)>", "%1\\>" },
-    { "\\b", "%%(<|>)" },                           -- Word boundary
-    { "([^?<]?)=", "%1\\=" },                       -- Escape equal sign
-
+    { "\\b", "%%(<|>)" }, -- Word boundary
+    { "([^?<]?)=", "%1\\=" }, -- Escape equal sign
   }
   for _, sub in ipairs(subs) do
     exp = exp:gsub(sub[1], sub[2])
   end
-  return  "\\v" .. exp
+  return "\\v" .. exp
 end
 
 ---[EXPR] Search for the current word without jumping forward. Respects
@@ -406,16 +374,11 @@ end
 ---@return string
 function expr.comfy_star(reverse, count)
   count = count or vim.v.count
-  vim.fn.setreg("/", "\\<" .. vim.fn.expand("<cword>") .. "\\>")
+  vim.fn.setreg("/", "\\<" .. vim.fn.expand "<cword>" .. "\\>")
   local ret = "<Cmd>set hlsearch <Bar> exe 'norm! wN'"
 
   if count > 0 then
-    ret = string.format(
-      "%s <Bar> norm! %d%s",
-      ret,
-      count,
-      reverse and "N" or "n"
-    )
+    ret = string.format("%s <Bar> norm! %d%s", ret, count, reverse and "N" or "n")
   end
 
   return utils.t(ret .. "<CR>")
@@ -430,11 +393,12 @@ function expr.next_reference(reverse)
     reverse = false
   end
   if #vim.lsp.buf_get_clients(0) > 0 then
-    return utils.t(string.format(
-      '<Cmd>lua require("illuminate").next_reference({ reverse = %s, wrap = true })<CR>',
-      tostring(reverse)
-    ))
-
+    return utils.t(
+      string.format(
+        '<Cmd>lua require("illuminate").next_reference({ reverse = %s, wrap = true })<CR>',
+        tostring(reverse)
+      )
+    )
   else
     return expr.comfy_star(reverse, 1)
   end
@@ -444,13 +408,11 @@ end
 function M.cmd_help_here(subject)
   local mods = ""
   if vim.bo.buftype ~= "help" then
-    vim.cmd("e $VIMRUNTIME/doc/help.txt")
+    vim.cmd "e $VIMRUNTIME/doc/help.txt"
     vim.bo.buftype = "help"
     vim.bo.buflisted = false
     mods = "keepjumps keepalt"
-
   end
-
 
   local ok, err = pcall(vim.api.nvim_exec, string.format("%s help %s", mods, subject), true)
   if not ok then
@@ -463,13 +425,12 @@ end
 function M.cmd_man_here(a, b)
   local tag = a
   if b then
-
     tag = string.format("%s(%s)", b, a)
   end
 
   local mods = ""
   if api.nvim_buf_get_name(0) ~= "manhere://0" then
-    vim.cmd("e manhere://0")
+    vim.cmd "e manhere://0"
     vim.bo.buftype = "nofile"
 
     vim.bo.buflisted = false
@@ -497,9 +458,7 @@ function M.cmd_exec_selection(range)
     lines = api.nvim_buf_get_lines(0, range[1] - 1, range[2], false)
   else
     lines = M.get_visual_selection()
-
   end
-
 
   local ok, out
   if ft == "vim" then
@@ -511,12 +470,10 @@ function M.cmd_exec_selection(range)
     ok, out = pcall(utils.exec_lua, table.concat(lines, "\n"))
   end
 
-
   if not ok and out then
     utils.err(out)
   end
 end
-
 
 --#region TYPES
 
@@ -531,4 +488,3 @@ end
 M.BufToggleEntry = BufToggleEntry
 
 return M
-
