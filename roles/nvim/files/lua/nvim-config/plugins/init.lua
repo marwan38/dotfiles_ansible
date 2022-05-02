@@ -27,9 +27,9 @@ let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
 ]]
 
--- require("packer").init({
--- 	max_jobs = 50
--- })
+require("packer").init({
+	max_jobs = 50
+})
 
 return require("packer").startup {
   ---@diagnostic disable-next-line: unused-local
