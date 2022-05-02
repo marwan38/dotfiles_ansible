@@ -40,7 +40,10 @@ else
   vim.g.tokyonight_colors = nil
 end
 
--- require("nvim-config.plugins.material")()
+local material_exists, _ = pcall(require, "nvim-config.plugins.material")
+if material_exists then
+  require("nvim-config.plugins.material")()
+end
 
 local M = {}
 
@@ -347,16 +350,15 @@ function M.apply_tweaks()
     gui = "bold",
   })
 
+
   hi({ "InclineNormal", "InclineNormalNC" }, {
     bg = bg_normal:clone():mod_value(-0.05):to_css(),
-
     fg = "NONE",
   })
 end
 
 
 do
-
   hi("NonText", { gui = "nocombine" })
   hi_link("LspReferenceText", "Visual", { default = true })
   hi_link("LspReferenceRead", "Visual", { default = true })
@@ -369,7 +371,6 @@ do
 
 
   M.apply_log_defaults()
-
 
   api.nvim_exec([[
     augroup colorscheme_config

@@ -31,12 +31,12 @@ return function()
     hide = {
       focused_win = false,
     },
-    highlight = {
-      groups = {
-        InclineNormal = "NONE",
-        InclineNormalNC = "NONE"
-      },
-    },
+    -- highlight = {
+    --   groups = {
+    --     InclineNormal = "NONE",
+    --     InclineNormalNC = "NONE"
+    --   },
+    -- },
     ignore = {
       buftypes = {},
       filetypes = {

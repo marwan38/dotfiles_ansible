@@ -390,12 +390,12 @@ return require("packer").startup {
     -- use { "glepnir/zephyr-nvim" }
     -- use { "folke/tokyonight.nvim" }
     -- use { "Mofiqul/dracula.nvim" }
-    -- use { "sindrets/material.nvim" }
+    use { "sindrets/material.nvim" }
     -- use { "sindrets/rose-pine-neovim", as = "rose-pine" }
     -- use { "mcchrish/zenbones.nvim", requires = "rktjmp/lush.nvim" }
     -- use { "sainnhe/everforest" }
     -- use { "Cybolic/palenight.vim" }
-    -- use { "olimorris/onedarkpro.nvim", branch = "main" }
+    use { "olimorris/onedarkpro.nvim", branch = "main" }
     -- use { "RRethy/nvim-base16" }
     -- use { "NTBBloodbath/doom-one.nvim" }
     use { "catppuccin/nvim", as = "catppuccin" }
