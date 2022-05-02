@@ -126,10 +126,15 @@ return function()
         find_cmd = "fd",
         -- find_cmd = "rg" -- find command (defaults to `fd`)
       },
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown({})
+
+      },
     },
   }
 
   -- Load extensions
   require("telescope").load_extension "fzf"
   require("telescope").load_extension "media_files"
+  require('telescope').load_extension('ui-select')
 end

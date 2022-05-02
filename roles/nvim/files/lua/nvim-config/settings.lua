@@ -61,7 +61,7 @@ opt.listchars = list {
   -- "extends:»",
 }
 opt.fillchars = list {
-  "vert:▏",
+  "vert:│",
   "diff:╱",
   "foldclose:",
   "foldopen:",
@@ -70,6 +70,7 @@ opt.showbreak = "⤷ "
 opt.writebackup = true
 opt.undofile = true
 opt.isfname:append ":"
+opt.laststatus = 3
 
 
 local data_backup = vim.fn.stdpath "data" .. "/backup"

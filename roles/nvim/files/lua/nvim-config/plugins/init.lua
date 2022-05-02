@@ -59,6 +59,7 @@ return require("packer").startup {
     use { "kyazdani42/nvim-web-devicons", config = conf "nvim-web-devicons" }
     use {
       "nvim-treesitter/nvim-treesitter",
+      run = ':TSUpdate',
       config = conf "treesitter",
       before = "neorg",
       requires = {
@@ -176,6 +177,7 @@ return require("packer").startup {
     use { "nvim-telescope/telescope.nvim", config = conf "telescope", after = "nvim-web-devicons" }
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     use { "nvim-telescope/telescope-media-files.nvim" }
+    use { 'nvim-telescope/telescope-ui-select.nvim' }
     use {
       "akinsho/nvim-bufferline.lua",
       config = conf "nvim-bufferline",
@@ -264,6 +266,7 @@ return require("packer").startup {
 
     -- MISC
     use { "feline-nvim/feline.nvim", config = conf "feline" }
+    use { 'b0o/incline.nvim', config = conf("incline"), after = "nvim-web-devicons" }
     use {
       "lewis6991/gitsigns.nvim",
       config = conf "gitsigns",

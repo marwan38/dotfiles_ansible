@@ -261,6 +261,7 @@ command! -bar -nargs=+ -complete=dir CompareDir
             \ tabnew | let t:paths = [<f-args>] | let t:compare_mode = 1 | vsp
             \ | silent exe '1windo lcd ' . t:paths[0] . ' | ' . ' 2windo lcd ' . t:paths[1]
             \ | windo exe 'exe "edit " . getcwd()'
+command! -bar TabTerm tab sp | exe 'term' | startinsert
 
 " ABBREVIATIONS
 cnoreabbrev msg Messages
