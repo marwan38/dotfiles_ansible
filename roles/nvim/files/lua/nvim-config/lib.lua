@@ -487,4 +487,11 @@ end
 
 M.BufToggleEntry = BufToggleEntry
 
+function M.get_path()
+  local current_file = vim.fn.expand("%:r")
+  local extension = vim.fn.expand("%:e")
+  local current_line = vim.fn.line(".")
+  return current_file .. "." .. extension .. ":" .. current_line
+end
+
 return M

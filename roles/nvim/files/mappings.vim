@@ -73,6 +73,7 @@ nnoremap ~ <Cmd>buffer #<CR>
 nnoremap <silent> <leader>w <Cmd>lua require'nvim-config.lib'.remove_buffer()<CR>
 nnoremap <leader>W <Cmd>bd<CR>
 nnoremap <silent> gb <Cmd>BufferLinePick<CR>
+nnoremap <silent> <leader>R <Cmd>lua print(require'nvim-config.lib'.get_path())<CR>
 
 " Navigate tabs
 nnoremap <silent> <Leader><Tab> <Cmd>tabn<CR>
