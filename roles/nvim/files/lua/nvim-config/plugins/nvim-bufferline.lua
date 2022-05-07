@@ -1,4 +1,4 @@
-return function ()
+return function()
   local symbol_map = {
     error = "",
     warning = "",
@@ -6,15 +6,15 @@ return function ()
     hint = "",
   }
 
-  require('bufferline').setup{
+  require("bufferline").setup {
     options = {
       view = "default",
       numbers = "none",
-      buffer_close_icon= '',
-      modified_icon = '●',
-      close_icon = '',
-      left_trunc_marker = '',
-      right_trunc_marker = '',
+      buffer_close_icon = "",
+      modified_icon = "●",
+      close_icon = "",
+      left_trunc_marker = "",
+      right_trunc_marker = "",
       max_name_length = 18,
       max_prefix_length = 15, -- prefix used when a buffer is deduplicated
       tab_size = 18,
@@ -37,26 +37,29 @@ return function ()
       enforce_regular_tabs = false,
       always_show_bufferline = true,
       -- sort_by = 'extension' | 'relative_directory' | 'directory' | function(buffer_a, buffer_b)
-        --   -- add custom logic
-        --   return buffer_a.modified > buffer_b.modified
+      --   -- add custom logic
+      --   return buffer_a.modified > buffer_b.modified
       -- end
       offsets = {
         {
           filetype = "NvimTree",
           text = "Files",
-          text_align = "center"
+          text_align = "center",
         },
         {
           filetype = "DiffviewFiles",
           text = "Source Control",
-          text_align = "center"
+          text_align = "center",
         },
-      }
-    }
+      },
+    },
   }
 
-  vim.api.nvim_exec([[
-    hi! BufferLineDiagnostic gui=bold
-    hi! BufferLineDiagnosticVisible gui=bold
-    ]], false)
+  -- vim.api.nvim_exec(
+  --   [[
+  --   hi! BufferLineDiagnostic gui=bold
+  --   hi! BufferLineDiagnosticVisible gui=bold
+  --   ]],
+  --   false
+  -- )
 end

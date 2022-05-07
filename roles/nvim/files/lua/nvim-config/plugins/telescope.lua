@@ -55,7 +55,7 @@ return function()
       },
 
       file_sorter = require("telescope.sorters").get_fuzzy_file,
-      file_ignore_patterns = {},
+      file_ignore_patterns = { "yarn.lock", "package-lock.json" },
 
       generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
       winblend = 0,
@@ -127,8 +127,7 @@ return function()
         -- find_cmd = "rg" -- find command (defaults to `fd`)
       },
       ["ui-select"] = {
-        require("telescope.themes").get_dropdown({})
-
+        require("telescope.themes").get_dropdown {},
       },
     },
   }
@@ -136,5 +135,5 @@ return function()
   -- Load extensions
   require("telescope").load_extension "fzf"
   require("telescope").load_extension "media_files"
-  require('telescope').load_extension('ui-select')
+  require("telescope").load_extension "ui-select"
 end

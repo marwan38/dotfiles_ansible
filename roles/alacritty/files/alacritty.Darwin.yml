@@ -7,9 +7,6 @@ window:
   title: Alacritty
   dynamic_title: true
 
-env:
-  TERM: xterm-256color
-
 key_bindings:
   - { key: Space, mods: Control, chars: "\x00" }
   - { key: Key3, mods: Control, chars: "\x1b" }
