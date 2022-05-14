@@ -32,32 +32,41 @@ function M.get_local_settings()
   return local_settings
 end
 
+local opts = { noremap = true, silent = true }
+
+vim.api.nvim_set_keymap("n", "<leader>ld", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+vim.api.nvim_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+vim.api.nvim_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+
 ---@diagnostic disable-next-line: unused-local
 _G.LspCommonOnAttach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   require("illuminate").on_attach(client)
 
-  -- TODO: Change to vim.api.nvim_buf_set_keymap
-  vim.cmd [[
-    " LSP
-    nnoremap <buffer> <silent> gd <Cmd>lua vim.lsp.buf.definition()<CR>
-    nnoremap <buffer> <silent> gD <C-W>v<Cmd>lua vim.lsp.buf.declaration()<CR>
-    nnoremap <buffer> <silent> gy <Cmd>lua vim.lsp.buf.type_definition()<CR>
-    nnoremap <buffer> <silent> gi <Cmd>lua vim.lsp.buf.implementation()<CR>
-    nnoremap <buffer> <silent> <C-k> <Cmd>lua vim.lsp.buf.signature_help()<CR>
-    nnoremap <buffer> <silent> gr <Cmd>Telescope lsp_references<CR>
-    nnoremap <buffer> <silent> <leader>rn <Cmd>lua vim.lsp.buf.rename()<CR>
-    nnoremap <buffer> <silent> <F2> <Cmd>lua vim.lsp.buf.rename()<CR>
-    nnoremap <buffer> <silent> <leader>f <Cmd>lua vim.lsp.buf.formatting()<CR>
-    nnoremap <buffer> <silent> K <Cmd>lua vim.lsp.buf.hover()<CR>
-    nnoremap <buffer> <leader>. <Cmd>lua vim.lsp.buf.code_action()<CR>
-    vnoremap <buffer> <leader>. <Cmd>lua vim.lsp.buf.range_code_action()<CR>
-    nnoremap <buffer> <silent> <leader>ld <Cmd>lua vim.diagnostic.open_float({ scope="line" })<CR>
-    " nnoremap <M-O> <Cmd>lua vim.lsp.buf.organize_imports()<CR>
-    nnoremap <buffer> <silent> [d <Cmd>lua vim.diagnostic.goto_prev()<CR>
-    nnoremap <buffer> <silent> ]d <Cmd>lua vim.diagnostic.goto_next()<CR>
-  ]]
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workleader_folder()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workleader_folder()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(
+    bufnr,
+    "n",
+    "<leader>wl",
+    "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workleader_folders()))<CR>",
+    opts
+  )
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>.", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "v", "<leader>.", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 _G.LspGetDefaultConfig = function()
