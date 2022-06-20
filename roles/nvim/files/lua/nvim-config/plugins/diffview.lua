@@ -16,9 +16,11 @@ return function()
       fold_open = "",
     },
     file_panel = {
-      position = "left",
-      width = 35,
-      height = 10,
+      win_config = {
+        position = "left",
+        width = 35,
+        height = 10,
+      },
       listing_style = "tree", -- One of 'list' or 'tree'
       tree_options = { -- Only applies when listing_style is 'tree'
 

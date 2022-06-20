@@ -66,27 +66,29 @@ return function()
       edit = "e",
       repl = "r",
     },
-    sidebar = {
-      -- You can change the order of elements in the sidebar
-      elements = {
-        -- Provide as ID strings or tables with "id" and "size" keys
-        {
-          id = "scopes",
-          size = 0.25, -- Can be float or integer > 1
+    layouts = {
+      {
+        -- You can change the order of elements in the sidebar
+        elements = {
+          -- Provide as ID strings or tables with "id" and "size" keys
+          {
+            id = "scopes",
+            size = 0.25, -- Can be float or integer > 1
+          },
+
+          { id = "breakpoints", size = 0.25 },
+          { id = "stacks", size = 0.25 },
+          { id = "watches", size = 00.25 },
         },
+        size = 40,
 
-        { id = "breakpoints", size = 0.25 },
-        { id = "stacks", size = 0.25 },
-        { id = "watches", size = 00.25 },
+        position = "left", -- Can be "left", "right", "top", "bottom"
       },
-      size = 40,
-
-      position = "left", -- Can be "left", "right", "top", "bottom"
-    },
-    tray = {
-      elements = { "repl" },
-      size = 10,
-      position = "bottom", -- Can be "left", "right", "top", "bottom"
+      {
+        elements = { "repl" },
+        size = 10,
+        position = "bottom", -- Can be "left", "right", "top", "bottom"
+      },
     },
     floating = {
       max_height = nil, -- These can be integers or a float between 0 and 1.
@@ -124,21 +126,46 @@ return function()
       request = "attach",
       processId = require("dap.utils").pick_process,
     },
-    {
-      name = "Jest watch current file",
-      type = "node2",
-      request = "launch",
-      cwd = vim.fn.getcwd(),
-      program = "${workspaceFolder}/node_modules/jest/bin/jest",
-      args = {
-        "${fileBasename}",
-        "--verbose",
+    -- {
+    --   name = "Jest watch current file",
+    --   type = "node2",
+    --   request = "launch",
+    --   cwd = vim.fn.getcwd(),
+    --   program = "${workspaceFolder}/node_modules/jest/bin/jest",
+    --   args = {
+    --     "${fileBasename}",
+    --     "--verbose",
+    --
+    --     "-i",
+    --     "--no-cache",
+    --     "--watchAll",
+    --   },
+    --   protocol = "inspector",
+    --   console = "integratedTerminal",
+    --   internalConsoleOptions = "neverOpen",
+    -- },
 
+    {
+      type = "node",
+      request = "launch",
+      name = "Jest single file, run all test cases",
+      program = "${workspaceRoot}/node_modules/jest/bin/jest.js",
+      args = { "${fileBasename}", "--verbose", "-i", "--no-cache" },
+      console = "integratedTerminal",
+
+      internalConsoleOptions = "neverOpen",
+    },
+    {
+      type = "node",
+      request = "launch",
+      name = "Jest run all tests",
+
+      program = "${workspaceRoot}/node_modules/jest/bin/jest.js",
+      args = {
+        "--verbose",
         "-i",
         "--no-cache",
-        "--watchAll",
       },
-      protocol = "inspector",
       console = "integratedTerminal",
       internalConsoleOptions = "neverOpen",
     },
