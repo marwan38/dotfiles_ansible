@@ -1,9 +1,5 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+# Theme ------------------------------------------------------------------------
+eval "$(oh-my-posh init zsh)"
 
 # Plugins ----------------------------------------------------------------------
 
@@ -11,10 +7,9 @@ if ! [ -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
 fi
 
-zstyle :omz:plugins:ssh-agent identities id_rsa_marwan bitbucket
+zstyle :omz:plugins:ssh-agent identities id_rsa_marwan bitbucket id_gh
 
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     git
     z
@@ -53,8 +48,6 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 ! [ -f ~/.dotfiles/roles/zsh/files/.aliases       ] || source ~/.dotfiles/roles/zsh/files/.aliases
 ! [ -f ~/.dotfiles/roles/zsh/files/.zshrc_profile ] || source ~/.dotfiles/roles/zsh/files/.zshrc_profile
 ! [ -f ~/.dotfiles/roles/zsh/files/.inputrc      ] || source ~/.dotfiles/roles/zsh/files/.inputrc
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-! [ -f ~/.dotfiles/roles/zsh/files/.p10k.zsh      ] || source ~/.dotfiles/roles/zsh/files/.p10k.zsh
 
 ! [ -f ~/.fzf.zsh       ] || source ~/.fzf.zsh
 ! [ -f ~/.aliases_local ] || source ~/.aliases_local
