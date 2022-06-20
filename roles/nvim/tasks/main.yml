@@ -9,7 +9,7 @@
 
 - name: Symlink init.lua to nvim/init.lua
   ansible.builtin.file:
-    src: "{{ dotfiles_home }}/roles/nvim/files"
+    src: "{{ dotfiles_home }}/roles/nvim/files/.config/nvim"
     dest: "{{ dotfiles_user_home }}/.config/nvim"
     state: link
     force: yes
