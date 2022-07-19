@@ -25,8 +25,9 @@ key_bindings:
   - { Key: K, mods: Alt, chars: "\x1bk" }
   - { Key: L, mods: Alt, chars: "\x1bl" }
   - { Key: F, mods: Alt, chars: "\x1bf" }
-  - { Key: D, mods: Alt, chars: "\x1bd" }
+  - { Key: D, mods: Alt|Shift, chars: "\x1bd" }
   - { Key: B, mods: Alt, chars: "\x1bb" }
+  - { Key: Q, mods: Control, chars: "\x1bq" }
   - { key: Left, mods: Alt, chars: "\x1bb" } # Skip word left
   - { key: Right, mods: Alt, chars: "\x1bf" } # Skip word right
   - { key: Left, mods: Command, chars: "\x1bOH", mode: AppCursor } # Home
@@ -38,13 +39,13 @@ draw_bold_text_with_bright_colors: true
 
 font:
   normal:
-    family: MesloLGM NF
+    family: MesloLGM Nerd Font Mono
     style: Regular
   bold:
-    family: MesloLGM NF
+    family: MesloLGM Nerd Font Mono 
     style: Bold
   italic:
-    family: MesloLGM NF
+    family: MesloLGM Nerd Font Mono
     style: Italic
 
   size: 14.0
@@ -90,4 +91,4 @@ schemes:
       - { index: 17, color: "0xF5E0DC" }
 
 # Apply the color scheme.
-colors: *catpuccin
+# colors: *catpuccin
