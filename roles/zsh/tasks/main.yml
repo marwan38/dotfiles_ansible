@@ -66,3 +66,20 @@
     dest: "{{dotfiles_user_home}}/.zshenv"
     state: link
     force: yes
+
+- name: Check for .zsh_profile
+  stat: path="{{dotfiles_user_home}}/.zsh_profile"
+  register: zsh_profile_stat
+
+- name: Back up zsh_profile.
+  command: mv ~/.zsh_profile ~/.zsh_profile.bak
+  args:
+    creates: "{{dotfiles_user_home}}/.zsh_profile.bak"
+  when: zsh_profile_stat.stat.exists
+
+- name: Symlink .zsh_profile
+  file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/.zsh_profile"
+    dest: "{{dotfiles_user_home}}/.zsh_profile"
+    state: link
+    force: yes

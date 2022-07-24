@@ -46,9 +46,9 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # Sourcing -------------------------------------------------------------------
 
-! [ -f ~/.dotfiles/roles/zsh/files/.aliases       ] || source ~/.dotfiles/roles/zsh/files/.aliases
-! [ -f ~/.dotfiles/roles/zsh/files/.zshrc_profile ] || source ~/.dotfiles/roles/zsh/files/.zshrc_profile
-! [ -f ~/.dotfiles/roles/zsh/files/.inputrc      ] || source ~/.dotfiles/roles/zsh/files/.inputrc
+! [ -f ~/.aliases       ] || source ~/.aliases
+! [ -f ~/.zsh_profile ] || source ~/.zsh_profile
+! [ -f ~/.inputrc      ] || source ~/.inputrc
 
 ! [ -f ~/.fzf.zsh       ] || source ~/.fzf.zsh
 ! [ -f ~/.aliases_local ] || source ~/.aliases_local

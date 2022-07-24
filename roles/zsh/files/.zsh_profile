@@ -3,6 +3,6 @@ if [ -f "$HOME/.profile" ]; then
 fi
 
 # Where should I put you?
-bindkey -s ^ff "tmux-sessionizer\n"
+bindkey -s ^f "tmux-sessionizer\n"
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down

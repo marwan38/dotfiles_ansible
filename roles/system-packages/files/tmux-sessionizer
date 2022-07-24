@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
-session=$(find ~ ~/personal ~/work ~/.dotfiles -mindepth 1 -maxdepth 1 -type d | fzf)
-session_name=$(basename "$session")
-
-echo "session $session_name"
-
-if ! tmux has-session -t "$session_name" 2> /dev/null; then
-  tmux new-session -s "$session_name" -c "$session" -d
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(find ~ ~/projects ~/personal ~/git -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf)
 fi
 
+if [[ -z $selected ]]; then
+    exit 0
+fi
 
-tmux switch-client -t "$session_name"
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
 
+tat $selected_name $selected
