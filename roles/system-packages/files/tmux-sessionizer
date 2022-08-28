@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 if [[ $# -eq 1 ]]; then
-    selected=$1
+    path_name=$1
 else
-    selected=$(find ~ ~/projects ~/personal ~/git -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf)
+    path_name=$(find ~ ~/projects ~/personal ~/git -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf)
 fi
 
-if [[ -z $selected ]]; then
+if [[ -z $path_name ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+selected_name=$(basename "$path_name" | tr . _)
 tmux_running=$(pgrep tmux)
 
-tat $selected_name $selected
+tat $selected_name $path_name
