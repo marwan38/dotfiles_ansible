@@ -1,4 +1,5 @@
 alias ta="tmux attach"
+alias tK="tmux kill-server 2> /dev/null"
 alias cb='git branch --sort=-committerdate | fzf --header Checkout| xargs git checkout'
 
 # Project based
