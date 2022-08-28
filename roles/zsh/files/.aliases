@@ -8,3 +8,5 @@ alias rs="./devops/rsync.sh marwan"
 alias gql="npm run graphql:introspect && npm run graphql:generate"
 
 # alias php="docker run php8.0 php"
+
+alias n="nvim ."
