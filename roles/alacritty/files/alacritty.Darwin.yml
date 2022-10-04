@@ -28,6 +28,7 @@ key_bindings:
   - { Key: D, mods: Alt|Shift, chars: "\x1bd" }
   - { Key: B, mods: Alt, chars: "\x1bb" }
   - { Key: Q, mods: Control, chars: "\x1bq" }
+  - { Key: P, mods: Alt|Shift|Control, chars: "\x1bp" }
   - { key: Left, mods: Alt, chars: "\x1bb" } # Skip word left
   - { key: Right, mods: Alt, chars: "\x1bf" } # Skip word right
   - { key: Left, mods: Command, chars: "\x1bOH", mode: AppCursor } # Home
@@ -39,16 +40,16 @@ draw_bold_text_with_bright_colors: true
 
 font:
   normal:
-    family: MesloLGM Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
     style: Regular
   bold:
-    family: MesloLGM Nerd Font Mono 
+    family: JetBrainsMono Nerd Font Mono
     style: Bold
   italic:
-    family: MesloLGM Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
     style: Italic
 
-  size: 14.0
+  size: 16.0
 
 # The definition of color schemes.
 schemes:
