@@ -1,18 +1,16 @@
 - import_tasks: mac.yml
   when: ansible_facts['os_family'] == 'Darwin'
 
-- name: Create neovim config directory
-  file:
-    path: "~/.config/nvim"
-    state: directory
-    mode: "0755"
+- name: Clone nvim config
+  ansible.builtin.git:
+    repo: 'git@github.com:marwan38/sindrets-dotfiles.git'
+    dest: "{{ sindrets_dotfiles }}"
 
-- name: Symlink init.lua to nvim/init.lua
+- name: Sym link nvim dir
   ansible.builtin.file:
-    src: "{{ dotfiles_home }}/roles/nvim/files/.config/nvim"
+    src: "{{ git_dir }}/sindrets-dotfiles/.config/nvim"
     dest: "{{ dotfiles_user_home }}/.config/nvim"
     state: link
-    force: yes
 
 - name: Clone packer.nvim (plugin manager)
   ansible.builtin.git:

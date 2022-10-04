@@ -1,4 +1,0 @@
-[submodule "roles/nvim/files"]
-	path = roles/nvim/files
-	url = git@github.com:marwan38/sindrets-dotfiles.git
-	branch = master
