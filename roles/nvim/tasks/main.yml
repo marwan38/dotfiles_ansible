@@ -5,6 +5,7 @@
   ansible.builtin.git:
     repo: 'git@github.com:marwan38/sindrets-dotfiles.git'
     dest: "{{ sindrets_dotfiles }}"
+    update: false
 
 - name: Sym link nvim dir
   ansible.builtin.file:
@@ -21,5 +22,3 @@
   ansible.builtin.command: 
     cmd: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
   when: false
-
-- import_tasks: language_servers.yml

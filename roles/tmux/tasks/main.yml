@@ -2,6 +2,8 @@
   ansible.builtin.package:
     name: tmux
     state: present
+  become: true
+  ignore_errors: true
 
 - name: Create tmux plugins directory
   file:

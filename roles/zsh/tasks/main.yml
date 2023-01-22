@@ -83,3 +83,21 @@
     dest: "{{dotfiles_user_home}}/.zsh_profile"
     state: link
     force: yes
+
+
+- name: Check for .aliases
+  stat: path="{{dotfiles_user_home}}/.aliases"
+  register: zsh_alias_stat
+
+- name: Back up zsh_profile.
+  command: mv ~/.zsh_profile ~/.aliases.bak
+  args:
+    creates: "{{dotfiles_user_home}}/.aliases.bak"
+  when: zsh_alias_stat.stat.exists
+
+- name: Symlink .zsh_profile
+  file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/.aliases"
+    dest: "{{dotfiles_user_home}}/.aliases"
+    state: link
+    force: yes
