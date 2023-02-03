@@ -28,7 +28,7 @@ key_bindings:
   - { Key: F, mods: Alt, chars: "\x1bf" }
   - { Key: D, mods: Alt|Shift, chars: "\x1bd" }
   - { Key: B, mods: Alt, chars: "\x1bb" }
-  - { Key: Q, mods: Control, chars: "\x1bq" }
+  - { Key: Q, mods: Control, chars: "\x11" }
   - { Key: P, mods: Alt|Shift|Control, chars: "\x1bp" }
   - { key: Left, mods: Alt, chars: "\x1bb" } # Skip word left
   - { key: Right, mods: Alt, chars: "\x1bf" } # Skip word right
@@ -36,6 +36,8 @@ key_bindings:
   - { key: Right, mods: Command, chars: "\x1bOF", mode: AppCursor } # End
   - { key: Back, mods: Command, chars: "\x15" } # Delete line
   - { key: Back, mods: Alt, chars: "\x1b\x7f" } # Delete word
+  - { key: LBracket, mods: Alt, chars: "\x1b[" }
+  - { key: RBracket, mods: Alt, chars: "\x1b]" }
 
 draw_bold_text_with_bright_colors: true
 
@@ -49,6 +51,9 @@ font:
   italic:
     family: JetBrainsMono Nerd Font Mono
     style: Regular Italic
+  bold_italic:
+    family: JetBrainsMono Nerd Font Mono
+    style: Bold Italic
 
   size: 18.0
 

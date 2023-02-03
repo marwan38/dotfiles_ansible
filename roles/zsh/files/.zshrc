@@ -18,8 +18,6 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-history-substring-search
-    docker
-    docker-compose
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -46,8 +44,9 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # Sourcing -------------------------------------------------------------------
 
-! [ -f ~/.aliases       ] || source ~/.aliases
-! [ -f ~/.zsh_profile ] || source ~/.zsh_profile
+! [ -f ~/.aliases      ] || source ~/.aliases
+! [ -f ~/.zsh_profile  ] || source ~/.zsh_profile
+! [ -f ~/.zshenv       ] || source ~/.zshenv
 ! [ -f ~/.inputrc      ] || source ~/.inputrc
 
 ! [ -f ~/.fzf.zsh       ] || source ~/.fzf.zsh
