@@ -1,6 +1,6 @@
 # Theme ------------------------------------------------------------------------
 eval "$(oh-my-posh init zsh)"
-eval "$(oh-my-posh init zsh --config ~/.poshthemes/darkblood.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.poshthemes/gruvbox.omp.json)"
 
 # Plugins ----------------------------------------------------------------------
 
@@ -74,3 +74,8 @@ function apt-history(){
             ;;
     esac
 }
+
+
+alias pnx="pnpm exec nx"
+
+
