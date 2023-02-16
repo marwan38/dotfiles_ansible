@@ -5,6 +5,8 @@ export PATH=$HOME/.npm-global/bin/:$PATH
 # pnpm
 export PNPM_HOME="/Users/marwanfikrat/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+alias pn=pnpm
+alias pnx="pnpm exec nx"
 # pnpm end
 # yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

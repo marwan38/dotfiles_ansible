@@ -74,8 +74,3 @@ function apt-history(){
             ;;
     esac
 }
-
-
-alias pnx="pnpm exec nx"
-
-
