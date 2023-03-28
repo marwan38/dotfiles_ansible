@@ -1,6 +1,6 @@
 # Theme ------------------------------------------------------------------------
 eval "$(oh-my-posh init zsh)"
-eval "$(oh-my-posh init zsh --config ~/.poshthemes/gruvbox.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.poshthemes/bubbles.omp.json)"
 
 # Plugins ----------------------------------------------------------------------
 
@@ -8,13 +8,10 @@ if ! [ -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
 fi
 
-zstyle :omz:plugins:ssh-agent identities id_rsa_marwan bitbucket id_gh
-
 export ZSH="$HOME/.oh-my-zsh"
 plugins=(
     git
     z
-    ssh-agent
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-history-substring-search
