@@ -1,6 +1,5 @@
 # Theme ------------------------------------------------------------------------
-eval "$(oh-my-posh init zsh)"
-eval "$(oh-my-posh init zsh --config ~/.poshthemes/bubbles.omp.json)"
+ZSH_THEME=robbyrussell
 
 # Plugins ----------------------------------------------------------------------
 

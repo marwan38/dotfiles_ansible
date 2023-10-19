@@ -3,3 +3,6 @@ localhost
 
 [local:vars]
 ansible_connection=local
+
+[pi]
+pi@home

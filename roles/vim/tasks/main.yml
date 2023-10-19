@@ -1,0 +1,6 @@
+- name: Install vim
+  become: yes
+  ansible.builtin.apt:
+    name: vim
+    state: present
+

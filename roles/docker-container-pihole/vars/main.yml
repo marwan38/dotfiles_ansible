@@ -1,0 +1,6 @@
+
+---
+
+docker_pihole_image_name: pihole/pihole:latest
+
+docker_pihole_ipv4_address: 192.168.1.34

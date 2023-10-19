@@ -1,0 +1,22 @@
+- name: "[docker] Setup the pi-hole docker container"
+  docker_container:
+    name: "pihole"
+    image: "pihole/pihole:latest"
+    state: started
+    restart: yes
+    restart_policy: unless-stopped
+    volumes:
+    - "/etc/pihole:/etc/pihole/"
+    - "/etc/dnsmasq.d/:/etc/dnsmasq.d/"
+    published_ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+    env:
+      TZ: 'Pacific/Auckland'
+      WEBPASSWORD: "testing"
+    capabilities: NET_ADMIN
+    dns_servers:
+    - "127.0.0.1"
+    - "8.8.8.8"
+    - "1.1.1.1"

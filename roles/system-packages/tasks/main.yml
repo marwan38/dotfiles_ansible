@@ -1,10 +1,18 @@
 - name: Install ripgrep
-  ansible.builtin.command: cargo install ripgrep
+  become: true
+  ansible.builtin.package: 
+    name: ripgrep
+    state: present
+
 
 - name: Install fd
-  ansible.builtin.command: cargo install fd-find
+  become: true
+  ansible.builtin.package: 
+    name: fd-find
+    state: present
 
 - name: Install less
+  become: true
   ansible.builtin.package:
     name: less
     state: present
@@ -21,6 +29,5 @@
     dest: "{{ dotfiles_user_home }}/.local/bin/{{ item }}"
     state: link
   with_items:
-    - "lua-language-server"
     - "tat"
     - "tmux-sessionizer"

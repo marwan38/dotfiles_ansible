@@ -1,0 +1,4 @@
+- src: https://github.com/emielmolenaar/ansible-role-docker-pihole.git
+  name: docker-container-pihole
+- src: https://github.com/geerlingguy/ansible-role-docker
+  name: docker

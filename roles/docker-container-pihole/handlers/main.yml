@@ -1,0 +1,7 @@
+---
+
+- name: restart pihole container
+  docker_container:
+    name: "{{ docker_pihole_container_name }}"
+    state: started
+    restart: yes
