@@ -1,8 +1,2 @@
-[local]
-localhost
-
-[local:vars]
-ansible_connection=local
-
-[pi]
-pi@home
+[homelab]
+pi-1.local     ansible_connection=ssh        ansible_user=homelab

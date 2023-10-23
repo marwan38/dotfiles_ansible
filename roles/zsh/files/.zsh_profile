@@ -1,8 +1,0 @@
-if [ -f "$HOME/.profile" ]; then
-    source $HOME/.profile
-fi
-
-# Where should I put you?
-bindkey -s ^f "tmux-sessionizer\n"
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down

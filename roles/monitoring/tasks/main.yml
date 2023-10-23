@@ -1,0 +1,25 @@
+# - name: Remove  project
+#   community.docker.docker_compose:
+#     project_src: flask
+#     state: absent
+#
+- name: copy files
+  ansible.builtin.copy:
+    src: monitoring/
+    dest: "{{ monitoring_home }}"
+
+- name: Start monitoring service
+  ansible.builtin.shell:
+    cmd: docker compose up -d
+    chdir: "{{ monitoring_home }}" 
+  register: output
+
+- name: Show results
+  ansible.builtin.debug:
+    var: output
+
+# - name: Verify that the db and web services are running
+#   ansible.builtin.assert:
+#     that:
+#       - "output.services.web.flask_web_1.state.running"
+#       - "output.services.db.flask_db_1.state.running"

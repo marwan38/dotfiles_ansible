@@ -1,0 +1,1 @@
+monitoring_home: "{{ ansible_env.HOME }}/monitoring"

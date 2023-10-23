@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-sudo cp -r $1 /mnt/c/Users/Marwan/Desktop

@@ -1,0 +1,5 @@
+router_subnet: 192.168.1.0/24
+router_gateway: 192.168.1.1
+tz: Pacific/Auckland
+
+dcompose_files: "{{ ansible_env.HOME }}/.dcompose_files"

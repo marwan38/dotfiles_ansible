@@ -1,0 +1,14 @@
+- name: copy files
+  ansible.builtin.copy:
+    src: docker-compose.yml
+    dest: "{{ dcompose_files }}/portainer/"
+
+- name: Start portainer service
+  ansible.builtin.shell:
+    cmd: docker compose up -d
+    chdir: "{{ dcompose_files }}/portainer/" 
+  register: output
+
+- name: Show results
+  ansible.builtin.debug:
+    var: output

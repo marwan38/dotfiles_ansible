@@ -1,39 +1,11 @@
-- name: Set up pi
-  hosts: pi
-  tasks:
-    - name: debug
-      debug: 
-  roles:
+- name: Homelab
+  hosts: homelab
 
-    - role: system-packages
-      tags:
-        - core
-        - system-packages
-    # - role: alacritty
-    #   tags:
-    #     - core
-    #     - alacritty
+  roles:
     - role: vim
       tags:
         - vim
-    # - role: tmux
-    #   tags:
-    #     - tmux
-    - role: zsh
-      tags:
-        - zsh
-    - role: fzf
-      tags:
-        - fzf
-    - role: git
-      tags:
-        - git
     - role: docker
       tags:
         - docker
-    - role: pihole
-      tags:
-        - pihole
-    - role: k3s
-      tags:
-        - k3s
+

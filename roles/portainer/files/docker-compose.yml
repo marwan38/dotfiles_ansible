@@ -1,0 +1,36 @@
+networks:
+  private:
+    external: true
+
+services:
+  portainer:
+    image: portainer/portainer-ce:alpine
+    container_name: portainer
+    expose:
+      - 9000
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "portainer_data:/data"
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      # entry point HTTP -> redirect to HTTPS
+      - "traefik.http.routers.portainer.entrypoints=web"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.local`)"
+      - "traefik.http.middlewares.portainer-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.portainer.middlewares=portainer-https-redirect"
+
+      # entry point HTTPS -> forward to service
+      - "traefik.http.routers.portainer-secure.entrypoints=websecure"
+      - "traefik.http.routers.portainer-secure.rule=Host(`portainer.local`)"
+      - "traefik.http.routers.portainer-secure.tls=true"
+      - "traefik.http.routers.portainer-secure.tls.certresolver=tls"
+      - "traefik.http.routers.portainer-secure.service=portainer"
+
+      - "traefik.docker.network=private"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+    networks:
+      - private
+
+volumes:
+  portainer_data: {}

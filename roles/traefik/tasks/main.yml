@@ -1,0 +1,34 @@
+# - name: create dcompose_files/traefik dir if not exist
+#   ansible.builtin.file:
+#     path: "{{ dcompose_files }}/traefik"
+#     state: directory
+- name: create private network
+  docker_network:
+    name: private
+
+- name: copy dcompose file
+  ansible.builtin.copy:
+    src: docker-compose.yml
+    dest: "{{ dcompose_files }}/traefik/"
+
+- name: create /etc/traefik dir if not exist
+  become: yes
+  ansible.builtin.file:
+    path: /etc/traefik
+    state: directory
+
+- name: copy traefik config
+  become: yes
+  ansible.builtin.copy:
+    src: traefik-private.yml
+    dest: /etc/traefik/
+
+- name: Start traefik service
+  ansible.builtin.shell:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "{{ dcompose_files }}/traefik" 
+  register: output
+
+- name: Show results
+  ansible.builtin.debug:
+    var: output

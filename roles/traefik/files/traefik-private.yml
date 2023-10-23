@@ -1,0 +1,32 @@
+# - "--log.level=DEBUG"
+# - "--log.filePath=/var/log/traefik/debug.log"
+# - "--accessLog.filePath=/var/log/traefik/access.log"
+api:
+  insecure: true
+
+serversTransport:
+  insecureSkipVerify: true
+
+entryPoints:
+  web:
+    address: :80
+  websecure:
+    address: :443
+
+providers:
+  docker:
+    exposedByDefault: false
+    network: private
+
+metrics:
+  prometheus: true
+#
+# http:
+#   middlewares:
+#     https-only:
+#       redirectScheme:
+#         scheme: https
+#         permanent: true
+#     test-auth:
+#       forwardAuth:
+#         insecureSkipVerify: true

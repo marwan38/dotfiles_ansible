@@ -1,9 +1,0 @@
-- name: Install fzf
-  ansible.builtin.package:
-    name: fzf
-    state: present
-
-- name: Install fzf config
-  ansible.builtin.command:
-    cmd: "/opt/homebrew/opt/fzf/install"
-    creates: "{{ dotfiles_user_home }}/.fzf"

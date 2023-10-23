@@ -1,0 +1,17 @@
+- name: Homelab
+  hosts: homelab
+  become: true
+
+  tasks:
+    - name: install docker
+      include_role: 
+        name: geerlingguy.docker
+      vars:
+        docker_users:
+          - pi
+
+    - name: install host machine docker plugin
+      ansible.builtin.apt:
+        name: python3-docker
+        state: present
+
