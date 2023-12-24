@@ -1,4 +1,0 @@
-- name: Install Alacritty
-  community.general.homebrew:
-    name: homebrew/cask/alacritty
-    state: present

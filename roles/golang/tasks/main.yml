@@ -1,4 +1,5 @@
-- name: Install Rust
+---
+- name: Install golang
   ansible.builtin.package:
-    name: rust
+    name: go
     state: present

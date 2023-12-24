@@ -1,5 +1,2 @@
-- import_tasks: mac.yml
+- import_tasks: darwin.yml
   when: ansible_facts['os_family'] == 'Darwin'
-#
-# - name: Install Bun
-#   ansibile.builtin.shell: curl -fsSL https://bun.sh/install | bash

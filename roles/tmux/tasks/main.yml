@@ -2,12 +2,11 @@
   ansible.builtin.package:
     name: tmux
     state: present
-  become: true
   ignore_errors: true
 
 - name: Create tmux plugins directory
   file:
-    path: "~/.tmux/plugins"
+    path: "{{ ansible_env.HOME }}/.tmux/plugins"
     state: directory
     mode: "0755"
 

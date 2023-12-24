@@ -1,8 +1,3 @@
 dotfiles_user_home: "{{ '~' | expanduser }}"
 dotfiles_home: "{{ dotfiles_user_home }}/.dotfiles"
 git_dir: "{{ dotfiles_user_home }}/git"
-sindrets_dotfiles: "{{git_dir}}/sindrets-dotfiles"
-
-full_name: Marwan Mustafa Fikrat
-git_user: marwan38
-git_email: marwan.mm@live.com

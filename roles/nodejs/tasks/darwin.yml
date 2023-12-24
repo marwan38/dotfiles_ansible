@@ -1,0 +1,33 @@
+- name: Check if NVM is installed
+  command: nvm --version
+  ignore_errors: yes
+  register: nvm_check
+
+- name: Install NVM if not present
+  when: nvm_check.rc != 0
+  block:
+    - name: Download NVM
+      get_url:
+        url: "https://raw.githubusercontent.com/nvm-sh/nvm/v{{ nvm_version }}/install.sh"
+        dest: /tmp/nvm_install.sh
+
+    - name: Install NVM
+      script: /tmp/nvm_install.sh
+      args:
+        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+      environment:
+        PROFILE: /dev/null
+
+    - name: Source NVM in the current session
+      shell: "source {{ ansible_env.HOME }}/.nvm/nvm.sh"
+
+    - name: Install  Node.js version {{ nodejs_version }}
+      shell: "nvm install {{ nodejs_version }}"
+
+    - name: Set the default Node.js version {{ nodejs_version }}
+      shell: "nvm alias default {{ nodejs_version }}"
+
+    - name: Clean up install script
+      file:
+        path: /tmp/nvm_install.sh
+        state: absent

@@ -19,7 +19,7 @@
   
 - name: Symlink php cs fixer config
   ansible.builtin.file:
-    src: "{{ dotfiles_home }}/roles/php/files/.php-cs-fixer.php"
+    src: ".php-cs-fixer.php"
     dest: "{{ dotfiles_user_home }}/.config/phpcs/.php-cs-fixer.php"
     state: link
     force: yes

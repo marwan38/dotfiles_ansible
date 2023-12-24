@@ -1,0 +1,13 @@
+[user]
+	name = Marwan Mustafa Fikrat
+	email = marwan.mm@live.com
+
+[difftool]
+	prompt = false
+
+[core]
+	editor       = nvim
+	pager = delta
+
+[delta]
+    line-numbers = true
