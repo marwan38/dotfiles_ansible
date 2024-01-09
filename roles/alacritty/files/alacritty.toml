@@ -1,0 +1,177 @@
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[font]
+size = 18.0
+
+[font.bold]
+family = "MesloLGS Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "MesloLGS Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "MesloLGS Nerd Font Mono"
+style = "Regular Italic"
+
+[font.normal]
+family = "MesloLGS Nerd Font Mono"
+style = "Regular"
+
+[font.offset]
+y = -4
+
+[[keyboard.bindings]]
+chars = "\u0000"
+key = "Space"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001B"
+key = "Key3"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001C"
+key = "Key4"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001D"
+key = "Key5"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001E"
+key = "Key6"
+mods = "Control"
+
+[[keyboard.bindings]]
+Key = "H"
+chars = "\u001B\b"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+Key = "J"
+chars = """
+\u001B
+"""
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+Key = "K"
+chars = "\u001B\u000B"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+Key = "L"
+chars = "\u001B\f"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+Key = "D"
+chars = "\u001B\u0004"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+Key = "P"
+chars = "\u001B\u0010"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+Key = "H"
+chars = "\u001Bh"
+mods = "Alt"
+
+[[keyboard.bindings]]
+Key = "J"
+chars = "\u001Bj"
+mods = "Alt"
+
+[[keyboard.bindings]]
+Key = "K"
+chars = "\u001Bk"
+mods = "Alt"
+
+[[keyboard.bindings]]
+Key = "L"
+chars = "\u001Bl"
+mods = "Alt"
+
+[[keyboard.bindings]]
+Key = "F"
+chars = "\u001Bf"
+mods = "Alt"
+
+[[keyboard.bindings]]
+Key = "D"
+chars = "\u001Bd"
+mods = "Alt|Shift"
+
+[[keyboard.bindings]]
+Key = "B"
+chars = "\u001Bb"
+mods = "Alt"
+
+[[keyboard.bindings]]
+Key = "Q"
+chars = "\u0011"
+mods = "Control"
+
+[[keyboard.bindings]]
+Key = "P"
+chars = "\u001Bp"
+mods = "Alt|Shift|Control"
+
+[[keyboard.bindings]]
+chars = "\u001Bb"
+key = "Left"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bf"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BOH"
+key = "Left"
+mode = "AppCursor"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001BOF"
+key = "Right"
+mode = "AppCursor"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0015"
+key = "Back"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001B\u007F"
+key = "Back"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001B["
+key = "LBracket"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001B]"
+key = "RBracket"
+mods = "Alt"
+
+[window]
+decorations = "full"
+dynamic_padding = false
+dynamic_title = false
+startup_mode = "Maximized"
+title = "Alacritty"

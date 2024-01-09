@@ -10,8 +10,8 @@
     state: present
   ignore_errors: true
 
-- name: Link alacritty.yml config file
+- name: Link alacritty.toml config file
   ansible.builtin.file:
-    src: "{{ dotfiles_home }}/roles/alacritty/files/alacritty.{{ ansible_facts['os_family'] }}.yml"
-    dest: "{{ dotfiles_user_home }}/.config/alacritty/alacritty.yml"
+    src: "{{ dotfiles_home }}/roles/alacritty/files/alacritty.toml"
+    dest: "{{ dotfiles_user_home }}/.config/alacritty/alacritty.toml"
     state: link
