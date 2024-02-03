@@ -20,7 +20,7 @@
 - name: copy traefik config
   become: yes
   ansible.builtin.copy:
-    src: traefik-private.yml
+    src: traefik.yml
     dest: /etc/traefik/
 
 - name: Start traefik service

@@ -6,13 +6,10 @@ services:
   portainer:
     image: portainer/portainer-ce:alpine
     container_name: portainer
-    expose:
-      - 9000
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "portainer_data:/data"
     restart: always
-    command: --admin-password 'homelab'
     labels:
       - "traefik.enable=true"
       # entry point HTTP -> redirect to HTTPS

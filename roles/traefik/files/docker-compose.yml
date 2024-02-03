@@ -3,17 +3,21 @@ networks:
     external: true
 
 services:
-
-  traefik-private:
+  traefik:
     image: "traefik:v2.10"
     container_name: "traefik"
     ports:
       - "80:80"
       - "443:443"
       - "8080:8080"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.local`)"
+      - "traefik.http.routers.traefik.entrypoints=web"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "/etc/traefik/traefik-private.yml:/etc/traefik/traefik.yml:ro"
+      - "/etc/traefik/traefik.yml:/etc/traefik/traefik.yml:ro"
     networks:
       - private
 
