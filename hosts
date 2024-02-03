@@ -1,2 +1,2 @@
 [homelab]
-pi-1.local     ansible_connection=ssh        ansible_user=homelab
+192.168.1.37     ansible_connection=ssh        ansible_user=homelab

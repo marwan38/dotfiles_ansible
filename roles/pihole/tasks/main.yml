@@ -10,6 +10,12 @@
         gateway: "{{ router_gateway }}"
         iprange: "{{ ipv4_address }}/32" # Just reserve a single ip for the pihole
 
+#should probs copy files over and load from there
+- name: create custom config
+  ansible.builtin.copy:
+    src: custom.list
+    dest: /etc/pihole/
+
 - name: "setup the pi-hole docker container"
   docker_container:
     name: "pihole"
@@ -20,10 +26,20 @@
     networks:
       - name: pihole
         ipv4_address: "{{ ipv4_address }}"
+      - name: private
     volumes:
     - "/etc/pihole:/etc/pihole/"
     - "/etc/dnsmasq.d/:/etc/dnsmasq.d/"
-    published_ports:
+    labels:
+      "traefik.enable": "true"
+      "traefik.http.middlewares.pihole-addprefix.addprefix.prefix": "/admin"
+      "traefik.http.middlewares.pihole-redirectregex.redirectregex.regex": "/admin/$"
+      "traefik.http.middlewares.pihole-redirectregex.redirectregex.replacement": "/"
+      "traefik.http.routers.pihole.entrypoints": "web"
+      "traefik.http.routers.pihole.middlewares": "pihole-redirectregex,pihole-addprefix"
+      "traefik.http.routers.pihole.rule": "Host(`pihole.local`)"
+      "traefik.http.services.pihole.loadbalancer.server.port": "80"
+    ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "80:80/tcp"
@@ -31,8 +47,6 @@
     env:
       TZ: "{{ tz }}"
       WEBPASSWORD: "homelab"
-    capabilities: NET_ADMIN
     dns_servers:
     - "127.0.0.1"
-    - "8.8.8.8"
     - "1.1.1.1"

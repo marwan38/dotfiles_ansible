@@ -1,0 +1,6 @@
+192.168.1.37 prometheus.local
+192.168.1.37 traefik.local
+192.168.1.37 pihole.local
+192.168.1.37 grafana.local
+192.168.1.37 whoami.local
+192.168.1.37 portainer.local
