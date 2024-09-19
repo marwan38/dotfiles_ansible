@@ -6,8 +6,8 @@
 	prompt = false
 
 [core]
-	editor       = nvim
+	editor = nvim
 	pager = delta
 
 [delta]
-    line-numbers = true
+  line-numbers = true

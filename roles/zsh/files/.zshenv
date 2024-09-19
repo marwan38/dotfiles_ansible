@@ -3,11 +3,14 @@ export MANPAGER='nvim +Man!'
 
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.npm-global/bin/:$PATH
-
+export PATH=$HOME/go/bin/:$PATH
 
 # pnpm
-export PNPM_HOME=$HOME/Library/pnpm
-export PATH=$PNPM_HOME:$PATH
+export PNPM_HOME="/Users/marwanfikrat/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 alias pnx="pnpm exec nx"
 # pnpm end
 
@@ -28,3 +31,6 @@ export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 #bun end
+
+# Created by `pipx` on 2024-03-19 23:23:24
+export PATH="$PATH:/Users/marwanfikrat/.local/bin"

@@ -7,3 +7,4 @@ alias n="nvim"
 # TODO: Move to a 'personal' alias file that's hidden from the public repo
 # AP
 alias rs="./devops/rsync.sh marwan"
+alias sbuild="./vendor/bin/sake dev/build"
