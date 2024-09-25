@@ -5,7 +5,11 @@ plugins=(
     zsh-syntax-highlighting
     zsh-history-substring-search
 )
-ZSH_THEME=robbyrussell
+if [[ -n $SSH_CONNECTION ]]; then
+  ZSH_THEME="agnoster"
+else
+  ZSH_THEME="robbyrussell"
+fi
 source $ZSH/oh-my-zsh.sh
 
 ! [ -f ~/.aliases ] || source ~/.aliases
