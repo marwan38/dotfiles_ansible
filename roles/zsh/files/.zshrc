@@ -30,15 +30,3 @@ function bindphp() {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zshenv ] && source ~/.zshenv
-
-
-
-# sst
-export PATH=/Users/marwanfikrat/.sst/bin:$PATH
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terragrunt terragrunt
-export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
-
-# bun completions
-[ -s "/Users/marwanfikrat/.bun/_bun" ] && source "/Users/marwanfikrat/.bun/_bun"
