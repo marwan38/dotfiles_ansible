@@ -1,8 +1,8 @@
 live_config_reload = true
 
-import = [
-    "~/.config/alacritty/themes/github_dark_default.toml"
-]
+# import = [
+#     "~/.config/alacritty/themes/github_dark_default.toml"
+# ]
 
 [colors]
 draw_bold_text_with_bright_colors = true
