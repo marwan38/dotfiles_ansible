@@ -14,5 +14,4 @@
 - name: Run fzf install script (macOS Homebrew)
   ansible.builtin.command:
     cmd: /opt/homebrew/opt/fzf/install --key-bindings --completion --no-update-rc
-    creates: "{{ home }}/.fzf"
   when: ansible_facts['os_family'] == 'Darwin'

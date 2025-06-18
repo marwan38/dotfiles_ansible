@@ -7,7 +7,7 @@ export PATH=$HOME/go/bin/:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
 # pnpm
-export PNPM_HOME="/Users/marwanfikrat/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
