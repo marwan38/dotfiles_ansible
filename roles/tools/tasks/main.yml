@@ -9,19 +9,17 @@
     name: less
     state: present
 
-- name: Ensure /usr/local/bin directory exists
-  become: true
-  file:
-    path: /usr/local/bin
+- name: Ensure {{ home }}/.local/bin directory exists
+  ansible.builtin.file:
+    path: "{{ home }}/.local/bin"
     state: directory
     mode: 0755
 
 - name: Copy binaries
-  become: true
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "/usr/local/bin/{{ item }}"
-    mode: 0755
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ home }}/.local/bin/{{ item }}"
+    state: link
   with_items:
     - "tat"
     - "tmux-sessionizer"

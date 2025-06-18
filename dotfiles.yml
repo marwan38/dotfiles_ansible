@@ -8,10 +8,10 @@
       tags:
         - core
         - nodejs
-    - role: system-packages
+    - role: tools
       tags:
         - core
-        - system-packages
+        - tools
     - role: alacritty
       tags:
         - core

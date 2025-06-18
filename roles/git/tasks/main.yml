@@ -6,8 +6,8 @@
 
 - name: Symlink git config
   ansible.builtin.file:
-    src: "{{ home_dotfiles }}/roles/git/files/config"
-    dest: "{{ home }}/.config/git/config"
+    src: "{{ role_path }}/files/config"
+    dest: "{{ home_config }}/git/config"
     state: link
     force: yes
 

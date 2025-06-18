@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# Attach or create tmux session named the same as current directory.
+
+path_name="${2:-$PWD}"
+tmux-sessionizer "$path_name"
+# selected_name=$(basename "$path_name" | tr . _)
+#
+# session_name=${1:-$selected_name}
+#
+# not_in_tmux() {
+#   [ -z "$TMUX" ]
+# }
+#
+# session_exists() {
+#   tmux has-session -t "=$session_name"
+# }
+#
+# create_session() {
+#     tmux new-session -Ad -s "$session_name" -c "$path_name"
+#
+#     tmux rename-window -t "$session_name:1" "nvim"
+#     tmux send-keys -t "nvim" "nvim" Enter
+#
+#     tmux new-window -t "$session_name:2" -n "term" -c "$path_name"
+# }
+#
+# create_detached_session() {
+#   create_session
+# }
+#
+# create_if_needed_and_attach() {
+#   if not_in_tmux; then
+#     create_session 
+#     tmux attach-session -t "$session_name:1"
+#   else
+#     if ! session_exists; then
+#       create_session
+#     fi
+#     tmux switch-client -t "$session_name:1"
+#   fi
+# }
+#
+# create_if_needed_and_attach

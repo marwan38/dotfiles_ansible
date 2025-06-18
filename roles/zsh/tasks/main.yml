@@ -6,98 +6,38 @@
   raw: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
   when: not oh_my_zsh_stat.stat.exists
 
-# TODO: Changing to Oh my posh.. add installation for it
-# - name: Check for powerlevel10k installation
-#   stat: "path=~/.oh-my-zsh/custom/themes/powerlevel10k"
-#   register: powerlevel10k_stat
-#
-# - name: Zsh plugin - powerlevel10k
-#   ansible.builtin.git:
-#     repo: https://github.com/romkatv/powerlevel10k.git
-#     depth: 1
-#     dest: "{{ home }}/.oh-my-zsh/custom/themes/powerlevel10k"
-#   when: not powerlevel10k_stat.stat.exists
+- name: Zsh plugin - zsh-syntax-highlighting
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 
-# - name: Zsh plugin - zsh-syntax-highlighting
-#   ansible.builtin.git:
-#     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-#     dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-#
-# - name: Zsh plugin - zsh-autosuggestions
-#   ansible.builtin.git:
-#     repo: https://github.com/zsh-users/zsh-autosuggestions.git
-#     dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-#
-# - name: Zsh plugin - zsh-history-substring-search
-#   ansible.builtin.git:
-#     repo: https://github.com/zsh-users/zsh-history-substring-search.git
-#     dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-history-substring-search"
+- name: Zsh plugin - zsh-autosuggestions
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 
-- name: Check for .zshrc
-  stat: path="{{home}}/.zshrc"
-  register: zshrc_stat
+- name: Zsh plugin - zsh-history-substring-search
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-history-substring-search.git
+    dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-history-substring-search"
 
-- name: Back up .zshrc
-  command: mv ~/.zshrc ~/.zshrc.bak
+- name: Check which zsh config files exist
+  ansible.builtin.stat:
+    path: "{{ home }}/{{ item }}"
+  loop: "{{ zsh_config_files }}"
+  register: zsh_stat_files
+
+- name: Back up existing zsh config files
+  command: mv "{{ home }}/{{ item.item }}" "{{ home }}/{{ item.item }}.bak"
   args:
-    creates: "{{home}}/.zshrc.bak"
-  when: zshrc_stat.stat.exists
+    creates: "{{ home }}/{{ item.item }}.bak"
+  when: item.stat.exists
+  loop: "{{ zsh_stat_files.results }}"
 
-- name: Symlink .zshrc
-  file:
-    src: "{{ home_dotfiles }}/roles/zsh/files/.zshrc"
-    dest: "{{home}}/.zshrc"
+- name: Symlink zsh config files
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ home }}/{{ item }}"
     state: link
     force: yes
-
-- name: Check for .zshenv
-  stat: path="{{home}}/.zshenv"
-  register: zshenv_stat
-
-- name: Back up .zshenv
-  command: mv ~/.zshenv ~/.zshenv.bak
-  args:
-    creates: "{{home}}/.zshenv.bak"
-  when: zshenv_stat.stat.exists
-
-- name: Symlink .zshenv
-  file:
-    src: "{{ home_dotfiles }}/roles/zsh/files/.zshenv"
-    dest: "{{home}}/.zshenv"
-    state: link
-    force: yes
-
-- name: Check for .zsh_profile
-  stat: path="{{home}}/.zsh_profile"
-  register: zsh_profile_stat
-
-- name: Back up zsh_profile.
-  command: mv ~/.zsh_profile ~/.zsh_profile.bak
-  args:
-    creates: "{{home}}/.zsh_profile.bak"
-  when: zsh_profile_stat.stat.exists
-
-- name: Symlink .zsh_profile
-  file:
-    src: "{{ home_dotfiles }}/roles/zsh/files/.zsh_profile"
-    dest: "{{home}}/.zsh_profile"
-    state: link
-    force: yes
-
-
-- name: Check for .aliases
-  stat: path="{{home}}/.aliases"
-  register: zsh_alias_stat
-
-- name: Back up zsh_profile.
-  command: mv ~/.zsh_profile ~/.aliases.bak
-  args:
-    creates: "{{home}}/.aliases.bak"
-  when: zsh_alias_stat.stat.exists
-
-- name: Symlink .zsh_profile
-  file:
-    src: "{{ home_dotfiles }}/roles/zsh/files/.aliases"
-    dest: "{{home}}/.aliases"
-    state: link
-    force: yes
+  loop: "{{ zsh_config_files }}"
