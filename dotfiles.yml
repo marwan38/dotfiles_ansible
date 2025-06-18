@@ -40,3 +40,6 @@
       tags:
         - aerospace
         - wm
+    - role: starship
+      tags:
+        - starship

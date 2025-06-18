@@ -1,3 +1,4 @@
+# OMZ
 export ZSH="$HOME/.oh-my-zsh"
 plugins=(
     git
@@ -10,9 +11,16 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   ZSH_THEME="robbyrussell"
 fi
+# Auto updates slow down the start up too much
+zstyle ':omz:update' mode reminder
 source $ZSH/oh-my-zsh.sh
 
+# Starship
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
 
+# Loads other relevant zsh files
 [ -f ~/.zshenv ] && source ~/.zshenv
 [ -f ~/.aliases ] && source ~/.aliases
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -30,4 +38,3 @@ function bindphp() {
   echo "Linking PHP $1"
   brew link php@$1
 }
-
