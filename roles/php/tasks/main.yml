@@ -6,12 +6,12 @@
 
 - name: Check for phpcs config dir
   ansible.builtin.stat: 
-    path: "{{ dotfiles_user_home }}/.config/phpcs"
+    path: "{{ home }}/.config/phpcs"
   register: phpcs_config_stat
 
 - name: Create phpcs config dir
   file:
-    path: "{{ dotfiles_user_home }}/.config/phpcs"
+    path: "{{ home }}/.config/phpcs"
     state: directory
     mode: "0755"
   when: not phpcs_config_stat.stat.exists
@@ -20,7 +20,7 @@
 - name: Symlink php cs fixer config
   ansible.builtin.file:
     src: ".php-cs-fixer.php"
-    dest: "{{ dotfiles_user_home }}/.config/phpcs/.php-cs-fixer.php"
+    dest: "{{ home }}/.config/phpcs/.php-cs-fixer.php"
     state: link
     force: yes
   when: not phpcs_config_stat.stat.exists

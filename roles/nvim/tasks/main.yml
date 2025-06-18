@@ -4,11 +4,11 @@
 - name: Clone nvim config
   ansible.builtin.git:
     repo: 'git@github.com:marwan38/nvim_config'
-    dest: "{{ git_dir }}/nvim_config"
+    dest: "{{ home_git }}/nvim_config"
     update: false
 
 - name: Sym link nvim dir
   ansible.builtin.file:
-    src: "{{ git_dir }}/nvim_config"
-    dest: "{{ dotfiles_user_home }}/.config/nvim"
+    src: "{{ home_git }}/nvim_config"
+    dest: "{{ home }}/.config/nvim"
     state: link

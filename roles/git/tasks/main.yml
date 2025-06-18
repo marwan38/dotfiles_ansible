@@ -1,13 +1,13 @@
 - name: Create git config directory
   file:
-    path: "{{ dotfiles_user_home }}/.config/git"
+    path: "{{ home }}/.config/git"
     state: directory
     mode: "0755"
 
 - name: Symlink git config
   ansible.builtin.file:
-    src: "{{ dotfiles_home }}/roles/git/files/config"
-    dest: "{{ dotfiles_user_home }}/.config/git/config"
+    src: "{{ home_dotfiles }}/roles/git/files/config"
+    dest: "{{ home }}/.config/git/config"
     state: link
     force: yes
 

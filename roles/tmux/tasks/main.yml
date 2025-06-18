@@ -13,11 +13,11 @@
 - name: Install tpm
   git:
     repo: https://github.com/tmux-plugins/tpm
-    dest: "{{dotfiles_user_home}}/.tmux/plugins/tpm"
+    dest: "{{home}}/.tmux/plugins/tpm"
   ignore_errors: true
 
 - name: Symlink tmux config
   ansible.builtin.file:
-    src: "{{ dotfiles_home }}/roles/tmux/files/.tmux.conf"
-    dest: "{{ dotfiles_user_home }}/.tmux.conf"
+    src: "{{ home_dotfiles }}/roles/tmux/files/.tmux.conf"
+    dest: "{{ home }}/.tmux.conf"
     state: link

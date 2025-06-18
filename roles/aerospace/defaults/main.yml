@@ -1,0 +1,1 @@
+aerospace_home_config: "{{ home }}/.config/aerospace"

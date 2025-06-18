@@ -40,3 +40,7 @@
     - role: golang
       tags:
         - golang
+    - role: aerospace
+      tags:
+        - aerospace
+        - wm
