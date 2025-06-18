@@ -12,7 +12,10 @@ else
 fi
 source $ZSH/oh-my-zsh.sh
 
-! [ -f ~/.aliases ] || source ~/.aliases
+
+[ -f ~/.zshenv ] && source ~/.zshenv
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
@@ -28,5 +31,3 @@ function bindphp() {
   brew link php@$1
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.zshenv ] && source ~/.zshenv

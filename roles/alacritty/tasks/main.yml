@@ -1,6 +1,6 @@
 - name: Create alacritty config dir
   ansible.builtin.file:
-    path: "{{ home }}/.config/alacritty"
+    path: "{{ home_config }}/alacritty"
     state: directory
     mode: '0755'
 
@@ -12,6 +12,7 @@
 
 - name: Link alacritty.toml config file
   ansible.builtin.file:
-    src: "{{ home_dotfiles }}/roles/alacritty/files/alacritty.toml"
-    dest: "{{ home }}/.config/alacritty/alacritty.toml"
+    src: "{{ role_path }}/files/alacritty.toml"
+    dest: "{{ home_config }}/alacritty/alacritty.toml"
     state: link
+    force: yes

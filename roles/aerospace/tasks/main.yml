@@ -1,12 +1,11 @@
 - name: Only run Aerospace role on macOS
   ansible.builtin.meta: end_play
-  when: ansible_facts['system'] != 'Darwin'
+  when: ansible_facts['os_family'] != 'Darwin'
 
 - name: Ensure Aerospace is installed via Homebrew
   community.general.homebrew:
     name: aerospace
     state: present
-  become: false
 
 - name: Ensure Aerospace config directory exists
   file:
@@ -14,17 +13,8 @@
     state: directory
     mode: "0755"
 
-- name: Check if Aerospace config file already exists
-  stat:
-    path: "{{ aerospace_home_config }}/aerospace.toml"
-  register: aerospace_config_stat
-
 - name: Symlink Aerospace config
   file:
     src: "{{ role_path }}/files/aerospace.toml"
     dest: "{{ aerospace_home_config }}/aerospace.toml"
     state: link
-    force: yes
-  when: aerospace_config_stat.stat.exists == false or
-    aerospace_config_stat.stat.islnk == false or
-    aerospace_config_stat.stat.lnk_source != role_path + '/files/aerospace.toml'

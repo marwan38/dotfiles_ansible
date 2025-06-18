@@ -1,25 +1,29 @@
-- name: Install ripgrep
-  ansible.builtin.command: cargo install ripgrep
+- name: Install 3rd party tools
+  block:
+    - name: Install ripgrep
+      ansible.builtin.command: cargo install ripgrep
 
-- name: Install fd
-  ansible.builtin.command: cargo install fd-find
+    - name: Install fd
+      ansible.builtin.command: cargo install fd-find
 
-- name: Install less
-  ansible.builtin.package:
-    name: less
-    state: present
+    - name: Install less
+      ansible.builtin.package:
+        name: less
+        state: present
 
-- name: Ensure {{ home }}/.local/bin directory exists
-  ansible.builtin.file:
-    path: "{{ home }}/.local/bin"
-    state: directory
-    mode: 0755
+- name: Copy over private bins
+  block:
+    - name: Ensure {{ home }}/.local/bin directory exists
+      ansible.builtin.file:
+        path: "{{ home }}/.local/bin"
+        state: directory
+        mode: 0755
 
-- name: Copy binaries
-  ansible.builtin.file:
-    src: "{{ role_path }}/files/{{ item }}"
-    dest: "{{ home }}/.local/bin/{{ item }}"
-    state: link
-  with_items:
-    - "tat"
-    - "tmux-sessionizer"
+    - name: Copy binaries
+      ansible.builtin.file:
+        src: "{{ role_path }}/files/{{ item }}"
+        dest: "{{ home }}/.local/bin/{{ item }}"
+        state: link
+      with_items:
+        - "tat"
+        - "tmux-sessionizer"

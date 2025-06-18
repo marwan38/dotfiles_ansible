@@ -6,7 +6,6 @@
         - core
     - role: nodejs
       tags:
-        - core
         - nodejs
     - role: tools
       tags:
@@ -31,9 +30,6 @@
     - role: git
       tags:
         - git
-    - role: php
-      tags:
-        - php
     - role: rust
       tags:
         - rust
