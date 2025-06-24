@@ -16,7 +16,7 @@ zstyle ':omz:update' mode reminder
 source $ZSH/oh-my-zsh.sh
 
 # Starship
-if command -v starship >/dev/null 2>&1; then
+if command -v starship >/dev/null; then
   eval "$(starship init zsh)"
 fi
 
