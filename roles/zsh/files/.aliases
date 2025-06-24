@@ -1,4 +1,18 @@
+# Git
+alias cb='git branch --sort=-committerdate | fzf --header Checkout | xargs git checkout'
+alias gaa='git add --all'
+alias gpr='git pull --rebase'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gst='git status'
+alias gcmsg='git commit --message'
+alias gcan!='git commit --verbose --all --no-edit --amend'
+alias gc!='git commit --verbose --amend'
+alias gcn!='git commit --verbose --no-edit --amend'
+
+# Tmux
 alias ta="tmux attach"
 alias tK="tmux kill-server 2> /dev/null"
-alias cb='git branch --sort=-committerdate | fzf --header Checkout| xargs git checkout'
+
+# Misc
 alias n="nvim"

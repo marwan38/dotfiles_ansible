@@ -9,6 +9,7 @@
     name: alacritty
     state: present
   ignore_errors: true
+  when: ansible_facts['os_family'] == 'Darwin'
 
 - name: Link alacritty.toml config file
   ansible.builtin.file:

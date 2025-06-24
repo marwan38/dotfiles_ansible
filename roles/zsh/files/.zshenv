@@ -19,13 +19,12 @@ alias pnx="pnpm exec nx"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # yarn end
 
-# TODO: NVM slows down the shell start up.
-# Consider replacing it with Shniz/fnm at a later stage if needed.
-# nvm
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# nvm end
+# fnm
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/marwan/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
 
 #bun
 # completions

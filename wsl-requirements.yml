@@ -1,0 +1,3 @@
+- name: gantsign.golang
+  src: https://github.com/gantsign/ansible-role-golang.git
+  version: 96536b0614fd032fb7488713e74dfacf30a871df

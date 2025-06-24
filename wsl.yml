@@ -1,0 +1,51 @@
+- name: Set up local workstation (wsl)
+  hosts: local
+  roles:
+    - role: package-manager
+      tags:
+        - core
+    - role: tools
+      tags:
+        - core
+        - tools
+    - role: nvim
+      tags:
+        - nvim
+    - role: tmux
+      tags:
+        - tmux
+    - role: zsh
+      tags:
+        - zsh
+    - role: fzf
+      tags:
+        - fzf
+    - role: git
+      tags:
+        - git
+    - role: rust
+      tags:
+        - rust
+    - role: gantsign.golang
+      golang_version: 1.23.2
+      tags:
+        - golang
+
+  tasks:
+    - name: Install NodeJS
+      vars:
+        fnm_dir: "{{ home }}/.local/share/fnm"
+      block:
+        - name: Install fnm (Fast Node Manager)
+          shell: curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "{{ fnm_dir }}" --skip-shell
+          args:
+            creates: "{{ fnm_dir }}"
+
+        - name: Install NodeJS LTS
+          shell: |
+            eval "`fnm env`"
+            fnm install --lts
+          environment:
+            PATH: "{{ fnm_dir }}"
+      tags:
+        - nodejs

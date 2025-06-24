@@ -1,16 +1,15 @@
 # OMZ
 export ZSH="$HOME/.oh-my-zsh"
 plugins=(
-    git
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-history-substring-search
 )
-if [[ -n $SSH_CONNECTION ]]; then
-  ZSH_THEME="agnoster"
-else
-  ZSH_THEME="robbyrussell"
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   ZSH_THEME="agnoster"
+# else
+#   ZSH_THEME="robbyrussell"
+# fi
 # Auto updates slow down the start up too much
 zstyle ':omz:update' mode reminder
 source $ZSH/oh-my-zsh.sh

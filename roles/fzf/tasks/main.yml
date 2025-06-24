@@ -10,6 +10,7 @@
     state: present
     update_cache: true
   when: ansible_facts['os_family'] == 'Debian'
+  become: true
 
 - name: Run fzf install script (macOS Homebrew)
   ansible.builtin.command:
