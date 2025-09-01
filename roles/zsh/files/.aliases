@@ -9,6 +9,7 @@ alias gcmsg='git commit --message'
 alias gcan!='git commit --verbose --all --no-edit --amend'
 alias gc!='git commit --verbose --amend'
 alias gcn!='git commit --verbose --no-edit --amend'
+alias gd='git diff'
 
 # Tmux
 alias ta="tmux attach"

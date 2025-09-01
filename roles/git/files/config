@@ -11,3 +11,9 @@
 
 [delta]
   line-numbers = true
+
+[init]
+	defaultBranch = main
+
+[includeIf "gitdir:~/git/penops/"]
+    path = ~/.config/git/config-po
