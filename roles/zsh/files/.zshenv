@@ -7,6 +7,7 @@ export PATH=$HOME/.local/bin:$PATH
 
 # GO
 export PATH=/usr/local/go/bin:$PATH
+export PATH=$HOME/go/bin/:$PATH
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"

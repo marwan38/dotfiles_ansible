@@ -15,5 +15,5 @@
 [init]
 	defaultBranch = main
 
-[includeIf "gitdir:~/git/penops/"]
+[include]
     path = ~/.config/git/config-po

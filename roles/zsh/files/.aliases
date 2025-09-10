@@ -10,6 +10,18 @@ alias gcan!='git commit --verbose --all --no-edit --amend'
 alias gc!='git commit --verbose --amend'
 alias gcn!='git commit --verbose --no-edit --amend'
 alias gd='git diff'
+alias gpsup='git push --set-upstream origin $(git_current_branch)'
+alias grh='git reset'
+alias gru='git reset --'
+alias grhh='git reset --hard'
+alias grhk='git reset --keep'
+alias grhs='git reset --soft'
+alias glgg='git log --graph'
+alias glgga='git log --graph --decorate --all'
+alias gsw='git switch'
+alias gfa='git fetch --all --tags --prune --jobs=10'
+alias gcb='git checkout -b'
+alias gcB='git checkout -B'
 
 # Tmux
 alias ta="tmux attach"

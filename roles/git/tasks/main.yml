@@ -6,10 +6,13 @@
 
 - name: Symlink git config
   ansible.builtin.file:
-    src: "{{ role_path }}/files/config"
-    dest: "{{ home_config }}/git/config"
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ home_config }}/git/{{ item }}"
     state: link
-    force: yes
+    force: true
+  with_items:
+    - "config"
+    - "config-po"
 
 - name: Install git delta
   ansible.builtin.command:
